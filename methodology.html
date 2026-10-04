@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Methodology - Moira.academic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #ffffff; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .stark-card { background-color: #000000; border: 2px solid #ffffff; box-shadow: 4px 4px 0px #ffffff; transition: all 0.2s ease; }
+    .stark-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ffffff; }
+    .stark-button { background-color: #ffffff; color: #000000; font-weight: 700; border: 2px solid #ffffff; box-shadow: 3px 3px 0px #888888; transition: all 0.15s ease; }
+    .stark-button:hover { background-color: #e5e5e5; transform: translate(-1px, -1px); box-shadow: 5px 5px 0px #ffffff; }
+    .prose-stark h1, .prose-stark h2, .prose-stark h3 { color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .prose-stark h1 { font-size: 1.875rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+    .prose-stark p { color: #d4d4d8; margin-bottom: 1rem; line-height: 1.7; }
+    .prose-stark ul { list-style-type: disc; padding-left: 1.25rem; color: #d4d4d8; margin-bottom: 1rem; }
+    .prose-stark ol { list-style-type: decimal; padding-left: 1.25rem; color: #d4d4d8; margin-bottom: 1rem; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+  <!-- Navigation Header -->
+  <header class="border-b-2 border-white bg-black sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight brand-font bg-white text-black px-3 py-1">MOIRA.ACADEMIC</a>
+      
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold tracking-wide uppercase">
+        <a href="index.html" class="hover:underline underline-offset-4 decoration-2 text-white">Hub</a>
+        <a href="tools.html" class="hover:underline underline-offset-4 decoration-2 text-white">Tools Directory</a>
+        <a href="stack.html" class="hover:underline underline-offset-4 decoration-2 text-white">Research Stacks</a>
+        <a href="discounts.html" class="hover:underline underline-offset-4 decoration-2 text-white">Edu Deals</a>
+        <a href="methodology.html" class="underline underline-offset-4 decoration-2 text-white">Methodology</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openConfigModal()" class="border-2 border-white px-3 py-1.5 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">
+          ⚙ Site Config
+        </button>
+        <a href="discounts.html" class="stark-button px-4 py-2 text-xs uppercase tracking-wider hidden sm:inline-block">.EDU Deals</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="border-b-2 border-white py-16 px-6 bg-black">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <div class="inline-block border border-white px-4 py-1 text-xs font-mono uppercase tracking-widest bg-zinc-900 text-white">
+        Standard Operating Procedures & Evaluation Metrics
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight uppercase brand-font text-white">
+        Benchmarking Methodology
+      </h1>
+      <p class="text-base text-zinc-300 max-w-2xl mx-auto">
+        How Moira.academic independently evaluates academic software, tests hallucination rates in AI tools, verifies privacy compliance, and benchmarks workflow efficiency.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content Body -->
+  <main class="max-w-4xl mx-auto w-full py-16 px-6 flex-1 space-y-12">
+    
+    <!-- Methodology Grid Principles -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="stark-card p-6 space-y-3">
+        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 01</span>
+        <h3 class="text-xl font-bold uppercase brand-font text-white">Citation Accuracy</h3>
+        <p class="text-sm text-zinc-300">
+          AI literature search engines are tested against a corpus of 500 peer-reviewed papers across social sciences and STEM to measure citation accuracy and hallucination rates.
+        </p>
+      </div>
+
+      <div class="stark-card p-6 space-y-3">
+        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 02</span>
+        <h3 class="text-xl font-bold uppercase brand-font text-white">Privacy & Data Governance</h3>
+        <p class="text-sm text-zinc-300">
+          We audit terms of service to verify whether user uploads and unpublished manuscript drafts are excluded from LLM training sets and third-party tracking.
+        </p>
+      </div>
+
+      <div class="stark-card p-6 space-y-3">
+        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 03</span>
+        <h3 class="text-xl font-bold uppercase brand-font text-white">Export & Interoperability</h3>
+        <p class="text-sm text-zinc-300">
+          Tools are rated on open-standard export support (BibTeX, RIS, Markdown, LaTeX) to ensure researchers avoid vendor lock-in.
+        </p>
+      </div>
+
+      <div class="stark-card p-6 space-y-3">
+        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 04</span>
+        <h3 class="text-xl font-bold uppercase brand-font text-white">Cost-to-Value Index</h3>
+        <p class="text-sm text-zinc-300">
+          Pricing structures are evaluated strictly against institutional access availability, free educational tiers, and student budget sustainability.
+        </p>
+      </div>
+    </div>
+
+    <!-- Article Document Body -->
+    <section class="border-2 border-white p-8 bg-zinc-950 space-y-6">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <span class="font-mono text-xs text-zinc-400 uppercase">STANDARD OPERATING PROCEDURE</span>
+        <button onclick="openArticleModal()" class="stark-button text-xs px-3 py-1.5 uppercase">⚡ Live Edit Standard</button>
+      </div>
+
+      <article id="methodologyBody" class="prose-stark">
+        <h1>Evaluation Standard Operating Procedure</h1>
+        <p>
+          At Moira.academic, software evaluations are conducted independently without editorial input or sponsorship influence from software vendors.
+        </p>
+        <h2>1. Testing Protocols</h2>
+        <p>Every software benchmark undergoes a 3-stage evaluation process:</p>
+        <ul>
+          <li><strong>Quantitative Stress-Testing:</strong> Evaluation of search latency, parsing accuracy on mathematical equations, and PDF metadata extraction success rates.</li>
+          <li><strong>Workflow Integration:</strong> Real-world scenario testing combining reference managers with writing environments (e.g., Zotero to Overleaf or Obsidian).</li>
+          <li><strong>Institutional Access Audit:</strong> Direct verification of student email discounts, grant funding options, and open-access tier functionality.</li>
+        </ul>
+        <h2>2. Disclosure Policy</h2>
+        <p>
+          All affiliate links or referral metrics are explicitly disclosed with transparent site configuration parameters maintained in local storage.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-12 px-6 bg-black text-zinc-400 text-xs border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="text-white font-bold text-lg brand-font">MOIRA.ACADEMIC</span>
+        <p class="max-w-md">Independent academic software evaluations and research stack intelligence.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 font-mono text-white">
+        <a href="index.html" class="hover:underline">Hub</a>
+        <a href="tools.html" class="hover:underline">Tools</a>
+        <a href="stack.html" class="hover:underline">Stacks</a>
+        <a href="discounts.html" class="hover:underline">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline">Methodology</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULLSCREEN INTERACTIVE ARTICLE READER & LIVE EDITOR MODAL -->
+  <div id="articleModal" class="fixed inset-0 bg-black z-50 hidden flex flex-col overflow-hidden">
+    <div class="border-b-2 border-white bg-black px-6 py-4 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-4">
+        <span class="text-xl font-bold brand-font bg-white text-black px-2 py-0.5">SOP EDITOR</span>
+        <span id="modalCategory" class="text-xs font-mono border border-zinc-700 px-2 py-1 text-zinc-300">METHODOLOGY SPEC</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleEditor()" class="border border-white text-xs px-3 py-1.5 font-mono uppercase hover:bg-white hover:text-black text-white">⚡ Toggle Live Editor</button>
+        <button onclick="closeArticleModal()" class="stark-button text-xs px-4 py-1.5 uppercase">✕ Close</button>
+      </div>
+    </div>
+
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+      <div id="viewContainer" class="lg:col-span-8 overflow-y-auto p-6 md:p-10 border-r-2 border-white space-y-8">
+        <div class="border-2 border-white p-6 bg-zinc-950 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <div>
+              <span id="cardCategory" class="text-xs font-mono text-zinc-400 uppercase tracking-widest">STANDARD SPECIFICATION</span>
+              <h1 id="articleTitle" class="text-3xl font-bold uppercase mt-1 brand-font text-white">Benchmarking Methodology</h1>
+            </div>
+            <div class="text-right">
+              <span id="articleRating" class="bg-white text-black font-mono font-bold text-lg px-3 py-1 inline-block">VERIFIED SOP</span>
+              <div id="articlePrice" class="text-xs font-mono text-zinc-400 mt-1">Version 2026.1</div>
+            </div>
+          </div>
+        </div>
+        <div id="articleBody" class="prose-stark"></div>
+      </div>
+
+      <div id="editorContainer" class="lg:col-span-4 bg-zinc-950 p-6 overflow-y-auto space-y-6 flex flex-col border-t-2 lg:border-t-0 border-white">
+        <div class="border-b border-zinc-800 pb-3">
+          <h2 class="text-lg font-bold uppercase brand-font text-white">Live Methodology Controls</h2>
+          <p class="text-xs text-zinc-400 font-mono">Edit benchmarking criteria and standard markdown documentation.</p>
+        </div>
+        <div class="space-y-4 font-mono text-xs">
+          <div>
+            <label class="block text-zinc-400 mb-1">SPECIFICATION TITLE</label>
+            <input type="text" id="editTitle" value="Benchmarking Methodology SOP" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-zinc-400 mb-1">STATUS</label>
+              <input type="text" id="editRating" value="VERIFIED SOP" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+            <div>
+              <label class="block text-zinc-400 mb-1">VERSION</label>
+              <input type="text" id="editPrice" value="v2026.1" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">DOCUMENT CATEGORY</label>
+            <input type="text" id="editCategory" value="Methodology Standard" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">MARKDOWN DOCUMENTATION</label>
+            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"># Evaluation Standard Operating Procedure
+
+At Moira.academic, software evaluations are conducted independently without editorial input or sponsorship influence.
+
+## 1. Testing Protocols
+Every software benchmark undergoes a 3-stage evaluation process:
+- **Quantitative Stress-Testing:** Evaluation of search latency and accuracy.
+- **Workflow Integration:** Real-world scenario testing in academic stack environments.
+- **Institutional Access Audit:** Verification of student discounts and open-access tiers.</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBSITE CONFIGURATION MODAL -->
+  <div id="configModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="stark-card bg-black p-8 max-w-lg w-full space-y-6 border-2 border-white">
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+        <h2 class="text-2xl font-bold uppercase brand-font text-white">Site Configuration</h2>
+        <button onclick="closeConfigModal()" class="text-white font-mono font-bold">✕</button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-zinc-400 mb-1">SITE TITLE</label>
+          <input type="text" id="configSiteTitle" value="MOIRA.ACADEMIC" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PRIMARY AFFILIATE TRACKER PARAMETER</label>
+          <input type="text" id="configAffiliateTag" value="?ref=moira-academic" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">ANALYTICS BEACON TOKEN</label>
+          <input type="text" id="configAnalyticsToken" value="cf-beacon-token-here" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4 border-t border-zinc-800">
+        <button onclick="closeConfigModal()" class="border border-white px-4 py-2 text-xs font-mono uppercase text-white">Cancel</button>
+        <button onclick="saveSiteConfig()" class="stark-button px-5 py-2 text-xs uppercase">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openArticleModal() {
+      updateLive();
+      document.getElementById("articleModal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeArticleModal() {
+      document.getElementById("articleModal").classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    function updateLive() {
+      const title = document.getElementById("editTitle").value;
+      const rating = document.getElementById("editRating").value;
+      const price = document.getElementById("editPrice").value;
+      const category = document.getElementById("editCategory").value;
+      const markdownText = document.getElementById("editMarkdown").value;
+
+      document.getElementById("articleTitle").innerText = title;
+      document.getElementById("articleRating").innerText = rating;
+      document.getElementById("articlePrice").innerText = price;
+      document.getElementById("modalCategory").innerText = category.toUpperCase();
+      document.getElementById("cardCategory").innerText = category.toUpperCase() + " SPECIFICATION";
+
+      if (typeof marked !== "undefined") {
+        document.getElementById("articleBody").innerHTML = marked.parse(markdownText);
+      }
+    }
+
+    function toggleEditor() {
+      const editor = document.getElementById("editorContainer");
+      const view = document.getElementById("viewContainer");
+      if (editor.classList.contains("hidden")) {
+        editor.classList.remove("hidden");
+        view.classList.remove("lg:col-span-12");
+        view.classList.add("lg:col-span-8");
+      } else {
+        editor.classList.add("hidden");
+        view.classList.remove("lg:col-span-8");
+        view.classList.add("lg:col-span-12");
+      }
+    }
+
+    function openConfigModal() {
+      document.getElementById('configModal').classList.remove('hidden');
+    }
+    function closeConfigModal() {
+      document.getElementById('configModal').classList.add('hidden');
+    }
+    function saveSiteConfig() {
+      const title = document.getElementById('configSiteTitle').value;
+      localStorage.setItem('moira_site_title', title);
+      alert('Configuration saved to local storage!');
+      closeConfigModal();
+    }
+  </script>
+</body>
+</html>
