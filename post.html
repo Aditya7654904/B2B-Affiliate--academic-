@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Paper - Moira.academic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #ffffff; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .stark-card { background-color: #000000; border: 2px solid #ffffff; box-shadow: 4px 4px 0px #ffffff; transition: all 0.2s ease; }
+    .stark-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ffffff; }
+    .stark-button { background-color: #ffffff; color: #000000; font-weight: 700; border: 2px solid #ffffff; box-shadow: 3px 3px 0px #888888; transition: all 0.15s ease; }
+    .stark-button:hover { background-color: #e5e5e5; transform: translate(-1px, -1px); box-shadow: 5px 5px 0px #ffffff; }
+    
+    /* Academic Journal Typography Styles */
+    .prose-stark h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; text-transform: uppercase; color: #ffffff; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #333333; padding-bottom: 0.5rem; }
+    .prose-stark h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; color: #ffffff; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+    .prose-stark h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; text-transform: uppercase; color: #ffffff; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .prose-stark p { color: #d4d4d8; line-height: 1.8; margin-bottom: 1.25rem; font-size: 1rem; }
+    .prose-stark ul { list-style-type: disc; padding-left: 1.5rem; color: #d4d4d8; margin-bottom: 1.25rem; }
+    .prose-stark ol { list-style-type: decimal; padding-left: 1.5rem; color: #d4d4d8; margin-bottom: 1.25rem; }
+    .prose-stark li { margin-bottom: 0.5rem; line-height: 1.7; }
+    .prose-stark blockquote { border-left: 4px solid #ffffff; padding-left: 1rem; margin-left: 0; margin-right: 0; color: #a1a1aa; font-style: italic; margin-bottom: 1.25rem; }
+    .prose-stark code { background-color: #18181b; border: 1px solid #3f3f46; color: #f4f4f5; font-family: monospace; padding: 0.2rem 0.4rem; font-size: 0.875rem; }
+    .prose-stark pre { background-color: #09090b; border: 1px solid #27272a; padding: 1rem; overflow-x: auto; margin-bottom: 1.25rem; }
+    .prose-stark pre code { background-color: transparent; border: none; padding: 0; }
+    .prose-stark table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; border: 1px solid #3f3f46; font-size: 0.875rem; }
+    .prose-stark th { background-color: #18181b; color: #ffffff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-align: left; padding: 0.75rem; border: 1px solid #3f3f46; text-transform: uppercase; }
+    .prose-stark td { padding: 0.75rem; border: 1px solid #27272a; color: #d4d4d8; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+  <!-- Header Navigation Routing All 5 Core Pages -->
+  <header class="border-b-2 border-white bg-black sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight brand-font bg-white text-black px-3 py-1">MOIRA.ACADEMIC</a>
+      
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold tracking-wide uppercase">
+        <a href="index.html" class="hover:underline underline-offset-4 decoration-2 text-white">Hub</a>
+        <a href="tools.html" class="hover:underline underline-offset-4 decoration-2 text-white">Tools Directory</a>
+        <a href="stack.html" class="hover:underline underline-offset-4 decoration-2 text-white">Research Stacks</a>
+        <a href="discounts.html" class="hover:underline underline-offset-4 decoration-2 text-white">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline underline-offset-4 decoration-2 text-white">Methodology</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openConfigModal()" class="border-2 border-white px-3 py-1.5 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">
+          ⚙ Site Config
+        </button>
+        <a href="discounts.html" class="stark-button px-4 py-2 text-xs uppercase tracking-wider hidden sm:inline-block">.EDU Deals</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Paper Title & Metadata Header Banner -->
+  <section class="border-b-2 border-white py-12 px-6 bg-zinc-950">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+        <div class="flex items-center gap-2">
+          <span id="postCategory" class="border border-white bg-white text-black px-2.5 py-0.5 font-bold uppercase">ACADEMIC EVALUATION</span>
+          <span id="postDate" class="text-zinc-400">PUBLISHED: 2026-10-04</span>
+        </div>
+        <span id="postSlug" class="text-zinc-500">posts/evaluation.md</span>
+      </div>
+
+      <h1 id="postTitle" class="text-3xl md:text-5xl font-bold tracking-tight uppercase brand-font text-white leading-tight">
+        Loading Paper Title...
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs border-t border-zinc-800 text-zinc-300">
+        <div>BENCHMARK SCORE: <span id="postRating" class="text-white font-bold bg-zinc-800 px-2 py-0.5">★ 4.9 / 5.0</span></div>
+        <div>TIER: <span id="postPrice" class="text-white font-bold">Free for Students</span></div>
+        <div>VERIFICATION: <span class="text-white font-bold">Peer Evaluated</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Article Body & Toolbar -->
+  <main class="max-w-4xl mx-auto w-full py-12 px-6 flex-1 space-y-8">
+    <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+      <a href="index.html" class="text-xs font-mono text-zinc-400 hover:text-white underline">← Back to Directory Hub</a>
+      <button onclick="openArticleModal()" class="stark-button text-xs px-3 py-1.5 uppercase">⚡ Live Edit Paper</button>
+    </div>
+
+    <!-- Rendered Markdown Container -->
+    <article id="paperBody" class="prose-stark">
+      <div class="font-mono text-xs text-zinc-500 py-12 text-center">Fetching paper content from local Markdown vault...</div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-12 px-6 bg-black text-zinc-400 text-xs border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="text-white font-bold text-lg brand-font">MOIRA.ACADEMIC</span>
+        <p class="max-w-md">Independent academic software evaluations and research stack intelligence.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 font-mono text-white">
+        <a href="index.html" class="hover:underline">Hub</a>
+        <a href="tools.html" class="hover:underline">Tools</a>
+        <a href="stack.html" class="hover:underline">Stacks</a>
+        <a href="discounts.html" class="hover:underline">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline">Methodology</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULLSCREEN INTERACTIVE ARTICLE READER & LIVE EDITOR MODAL -->
+  <div id="articleModal" class="fixed inset-0 bg-black z-50 hidden flex flex-col overflow-hidden">
+    <div class="border-b-2 border-white bg-black px-6 py-4 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-4">
+        <span class="text-xl font-bold brand-font bg-white text-black px-2 py-0.5">PAPER EDITOR</span>
+        <span id="modalCategory" class="text-xs font-mono border border-zinc-700 px-2 py-1 text-zinc-300">ACADEMIC DRAFT</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleEditor()" class="border border-white text-xs px-3 py-1.5 font-mono uppercase hover:bg-white hover:text-black text-white">⚡ Toggle Live Editor</button>
+        <button onclick="closeArticleModal()" class="stark-button text-xs px-4 py-1.5 uppercase">✕ Close</button>
+      </div>
+    </div>
+
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+      <div id="viewContainer" class="lg:col-span-8 overflow-y-auto p-6 md:p-10 border-r-2 border-white space-y-8">
+        <div class="border-2 border-white p-6 bg-zinc-950 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <div>
+              <span id="cardCategory" class="text-xs font-mono text-zinc-400 uppercase tracking-widest">EVALUATION DRAFT</span>
+              <h1 id="articleTitle" class="text-3xl font-bold uppercase mt-1 brand-font text-white">Paper Title</h1>
+            </div>
+            <div class="text-right">
+              <span id="articleRating" class="bg-white text-black font-mono font-bold text-lg px-3 py-1 inline-block">★ 4.9 / 5.0</span>
+              <div id="articlePrice" class="text-xs font-mono text-zinc-400 mt-1">Free for Students</div>
+            </div>
+          </div>
+        </div>
+        <div id="articleBody" class="prose-stark"></div>
+      </div>
+
+      <div id="editorContainer" class="lg:col-span-4 bg-zinc-950 p-6 overflow-y-auto space-y-6 flex flex-col border-t-2 lg:border-t-0 border-white">
+        <div class="border-b border-zinc-800 pb-3">
+          <h2 class="text-lg font-bold uppercase brand-font text-white">Live Paper Controls</h2>
+          <p class="text-xs text-zinc-400 font-mono">Edit draft markdown and metadata in real-time.</p>
+        </div>
+        <div class="space-y-4 font-mono text-xs">
+          <div>
+            <label class="block text-zinc-400 mb-1">PAPER TITLE</label>
+            <input type="text" id="editTitle" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-zinc-400 mb-1">SCORE / BENCHMARK</label>
+              <input type="text" id="editRating" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+            <div>
+              <label class="block text-zinc-400 mb-1">PRICING TIER</label>
+              <input type="text" id="editPrice" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">ACADEMIC CATEGORY</label>
+            <input type="text" id="editCategory" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">MARKDOWN DRAFT BODY</label>
+            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBSITE CONFIGURATION MODAL -->
+  <div id="configModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="stark-card bg-black p-8 max-w-lg w-full space-y-6 border-2 border-white">
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+        <h2 class="text-2xl font-bold uppercase brand-font text-white">Site Configuration</h2>
+        <button onclick="closeConfigModal()" class="text-white font-mono font-bold">✕</button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-zinc-400 mb-1">SITE TITLE</label>
+          <input type="text" id="configSiteTitle" value="MOIRA.ACADEMIC" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PRIMARY AFFILIATE TRACKER PARAMETER</label>
+          <input type="text" id="configAffiliateTag" value="?ref=moira-academic" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">ANALYTICS BEACON TOKEN</label>
+          <input type="text" id="configAnalyticsToken" value="cf-beacon-token-here" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4 border-t border-zinc-800">
+        <button onclick="closeConfigModal()" class="border border-white px-4 py-2 text-xs font-mono uppercase text-white">Cancel</button>
+        <button onclick="saveSiteConfig()" class="stark-button px-5 py-2 text-xs uppercase">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let rawMarkdownContent = "";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get("slug") || "top-ai-research-tools-2026";
+      const filePath = `posts/${slug}.md`;
+
+      document.getElementById("postSlug").innerText = filePath;
+
+      fetch(filePath)
+        .then((res) => {
+          if (!res.ok) throw new Error("File not found");
+          return res.text();
+        })
+        .then((text) => {
+          rawMarkdownContent = text;
+          parseAndRenderMarkdown(text);
+        })
+        .catch((err) => {
+          console.error("Error loading post:", err);
+          document.getElementById("paperBody").innerHTML = `
+            <div class="border-2 border-white p-8 text-center space-y-4 bg-zinc-950">
+              <h2 class="text-xl font-bold uppercase brand-font text-white">Paper Evaluation Not Found</h2>
+              <p class="text-xs font-mono text-zinc-400">Could not locate file at path <code>${filePath}</code>.</p>
+              <a href="index.html" class="stark-button inline-block text-xs px-4 py-2 uppercase">Return to Directory Hub</a>
+            </div>
+          `;
+          document.getElementById("postTitle").innerText = "404 - Evaluation Paper Not Found";
+        });
+    });
+
+    function parseAndRenderMarkdown(text) {
+      let title = "Academic Software Evaluation";
+      let category = "ACADEMIC EVALUATION";
+      let rating = "★ 4.8 / 5.0";
+      let price = "Free Tier Available";
+      let date = "2026-10-04";
+      let content = text;
+
+      // Extract Frontmatter metadata if present
+      if (text.startsWith("---")) {
+        const parts = text.split("---");
+        if (parts.length >= 3) {
+          const frontmatter = parts[1];
+          content = parts.slice(2).join("---");
+
+          const titleMatch = frontmatter.match(/title:\s*["']?(.*?)["']?$/m);
+          const categoryMatch = frontmatter.match(/category:\s*["']?(.*?)["']?$/m);
+          const ratingMatch = frontmatter.match(/rating:\s*["']?(.*?)["']?$/m);
+          const priceMatch = frontmatter.match(/price:\s*["']?(.*?)["']?$/m);
+          const dateMatch = frontmatter.match(/date:\s*["']?(.*?)["']?$/m);
+
+          if (titleMatch) title = titleMatch[1];
+          if (categoryMatch) category = categoryMatch[1];
+          if (ratingMatch) rating = ratingMatch[1];
+          if (priceMatch) price = priceMatch[1];
+          if (dateMatch) date = dateMatch[1];
+        }
+      }
+
+      document.getElementById("postTitle").innerText = title;
+      document.getElementById("postCategory").innerText = category.toUpperCase();
+      document.getElementById("postRating").innerText = rating;
+      document.getElementById("postPrice").innerText = price;
+      document.getElementById("postDate").innerText = "PUBLISHED: " + date;
+      document.title = `${title} - Moira.academic`;
+
+      if (typeof marked !== "undefined") {
+        document.getElementById("paperBody").innerHTML = marked.parse(content);
+      }
+
+      // Populate Modal Editor inputs
+      document.getElementById("editTitle").value = title;
+      document.getElementById("editRating").value = rating;
+      document.getElementById("editPrice").value = price;
+      document.getElementById("editCategory").value = category;
+      document.getElementById("editMarkdown").value = content;
+    }
+
+    function openArticleModal() {
+      updateLive();
+      document.getElementById("articleModal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeArticleModal() {
+      document.getElementById("articleModal").classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    function updateLive() {
+      const title = document.getElementById("editTitle").value;
+      const rating = document.getElementById("editRating").value;
+      const price = document.getElementById("editPrice").value;
+      const category = document.getElementById("editCategory").value;
+      const markdownText = document.getElementById("editMarkdown").value;
+
+      document.getElementById("articleTitle").innerText = title;
+      document.getElementById("articleRating").innerText = rating;
+      document.getElementById("articlePrice").innerText = price;
+      document.getElementById("modalCategory").innerText = category.toUpperCase();
+      document.getElementById("cardCategory").innerText = category.toUpperCase() + " EVALUATION";
+
+      if (typeof marked !== "undefined") {
+        document.getElementById("articleBody").innerHTML = marked.parse(markdownText);
+      }
+    }
+
+    function toggleEditor() {
+      const editor = document.getElementById("editorContainer");
+      const view = document.getElementById("viewContainer");
+      if (editor.classList.contains("hidden")) {
+        editor.classList.remove("hidden");
+        view.classList.remove("lg:col-span-12");
+        view.classList.add("lg:col-span-8");
+      } else {
+        editor.classList.add("hidden");
+        view.classList.remove("lg:col-span-8");
+        view.classList.add("lg:col-span-12");
+      }
+    }
+
+    function openConfigModal() {
+      document.getElementById('configModal').classList.remove('hidden');
+    }
+    function closeConfigModal() {
+      document.getElementById('configModal').classList.add('hidden');
+    }
+    function saveSiteConfig() {
+      const title = document.getElementById('configSiteTitle').value;
+      localStorage.setItem('moira_site_title', title);
+      alert('Configuration saved to local storage!');
+      closeConfigModal();
+    }
+  </script>
+</body>
+</html>
