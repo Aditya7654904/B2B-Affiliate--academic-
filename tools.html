@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools Directory - Moira.academic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #ffffff; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .stark-card { background-color: #000000; border: 2px solid #ffffff; box-shadow: 4px 4px 0px #ffffff; transition: all 0.2s ease; }
+    .stark-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ffffff; }
+    .stark-button { background-color: #ffffff; color: #000000; font-weight: 700; border: 2px solid #ffffff; box-shadow: 3px 3px 0px #888888; transition: all 0.15s ease; }
+    .stark-button:hover { background-color: #e5e5e5; transform: translate(-1px, -1px); box-shadow: 5px 5px 0px #ffffff; }
+    .prose-stark h1, .prose-stark h2, .prose-stark h3 { color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .prose-stark h1 { font-size: 1.875rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+    .prose-stark p { color: #d4d4d8; margin-bottom: 1rem; line-height: 1.7; }
+    .prose-stark ul { list-style-type: disc; padding-left: 1.25rem; color: #d4d4d8; margin-bottom: 1rem; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+  <!-- Header Navigation -->
+  <header class="border-b-2 border-white bg-black sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight brand-font bg-white text-black px-3 py-1">MOIRA.ACADEMIC</a>
+      
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold tracking-wide uppercase">
+        <a href="index.html" class="hover:underline underline-offset-4 decoration-2 text-white">Hub</a>
+        <a href="tools.html" class="underline underline-offset-4 decoration-2 text-white">Tools Directory</a>
+        <a href="stack.html" class="hover:underline underline-offset-4 decoration-2 text-white">Research Stacks</a>
+        <a href="discounts.html" class="hover:underline underline-offset-4 decoration-2 text-white">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline underline-offset-4 decoration-2 text-white">Methodology</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openConfigModal()" class="border-2 border-white px-3 py-1.5 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">
+          ⚙ Site Config
+        </button>
+        <a href="discounts.html" class="stark-button px-4 py-2 text-xs uppercase tracking-wider hidden sm:inline-block">.EDU Deals</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tools Banner Section -->
+  <section class="border-b-2 border-white py-16 px-6 bg-black">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <div class="inline-block border border-white px-4 py-1 text-xs font-mono uppercase tracking-widest bg-zinc-900 text-white">
+        Software Benchmarks & Index
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight uppercase brand-font text-white">
+        Academic Tools Directory
+      </h1>
+      <p class="text-base text-zinc-300 max-w-2xl mx-auto">
+        Evaluated software solutions for reference management, AI literature discovery, data visualization, LaTeX writing, and qualitative research.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter & Search Controls -->
+  <section class="border-b-2 border-white bg-zinc-950 py-6 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs uppercase">
+        <span class="text-zinc-500 mr-2">Filter:</span>
+        <button onclick="filterTools('all')" class="border border-white bg-white text-black px-3 py-1 font-bold">All Tools</button>
+        <button onclick="filterTools('ai')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">AI Search</button>
+        <button onclick="filterTools('citation')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">Citations</button>
+        <button onclick="filterTools('writing')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">Writing</button>
+        <button onclick="filterTools('analysis')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">Data Analysis</button>
+      </div>
+      <div class="w-full md:w-64">
+        <input type="text" id="toolSearch" oninput="searchTools()" placeholder="Search tools..." class="w-full bg-black border border-white p-2 font-mono text-xs text-white outline-none">
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Tools Grid Container -->
+  <main class="py-16 px-6 max-w-7xl mx-auto w-full flex-1">
+    <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="col-span-full font-mono text-xs text-zinc-500 text-center py-16">Loading Tools Directory Data...</div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-12 px-6 bg-black text-zinc-400 text-xs border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="text-white font-bold text-lg brand-font">MOIRA.ACADEMIC</span>
+        <p class="max-w-md">Independent academic software evaluations and research stack intelligence.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 font-mono text-white">
+        <a href="index.html" class="hover:underline">Hub</a>
+        <a href="tools.html" class="hover:underline">Tools</a>
+        <a href="stack.html" class="hover:underline">Stacks</a>
+        <a href="discounts.html" class="hover:underline">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline">Methodology</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULLSCREEN INTERACTIVE ARTICLE READER & LIVE EDITOR MODAL -->
+  <div id="articleModal" class="fixed inset-0 bg-black z-50 hidden flex flex-col overflow-hidden">
+    <div class="border-b-2 border-white bg-black px-6 py-4 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-4">
+        <span class="text-xl font-bold brand-font bg-white text-black px-2 py-0.5">TOOL BENCHMARK</span>
+        <span id="modalCategory" class="text-xs font-mono border border-zinc-700 px-2 py-1 text-zinc-300">SOFTWARE SPEC</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleEditor()" class="border border-white text-xs px-3 py-1.5 font-mono uppercase hover:bg-white hover:text-black text-white">⚡ Toggle Live Editor</button>
+        <button onclick="closeArticleModal()" class="stark-button text-xs px-4 py-1.5 uppercase">✕ Close</button>
+      </div>
+    </div>
+
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+      <div id="viewContainer" class="lg:col-span-8 overflow-y-auto p-6 md:p-10 border-r-2 border-white space-y-8">
+        <div class="border-2 border-white p-6 bg-zinc-950 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <div>
+              <span id="cardCategory" class="text-xs font-mono text-zinc-400 uppercase tracking-widest">EVALUATION METRICS</span>
+              <h1 id="articleTitle" class="text-3xl font-bold uppercase mt-1 brand-font text-white">Tool Name</h1>
+            </div>
+            <div class="text-right">
+              <span id="articleRating" class="bg-white text-black font-mono font-bold text-lg px-3 py-1 inline-block">★ 4.8 / 5.0</span>
+              <div id="articlePrice" class="text-xs font-mono text-zinc-400 mt-1">Free Tier Available</div>
+            </div>
+          </div>
+        </div>
+        <div id="articleBody" class="prose-stark"></div>
+      </div>
+
+      <div id="editorContainer" class="lg:col-span-4 bg-zinc-950 p-6 overflow-y-auto space-y-6 flex flex-col border-t-2 lg:border-t-0 border-white">
+        <div class="border-b border-zinc-800 pb-3">
+          <h2 class="text-lg font-bold uppercase brand-font text-white">Live Tool Controls</h2>
+          <p class="text-xs text-zinc-400 font-mono">Edit tool metrics and markdown evaluation live.</p>
+        </div>
+        <div class="space-y-4 font-mono text-xs">
+          <div>
+            <label class="block text-zinc-400 mb-1">TOOL NAME</label>
+            <input type="text" id="editTitle" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-zinc-400 mb-1">BENCHMARK SCORE</label>
+              <input type="text" id="editRating" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+            <div>
+              <label class="block text-zinc-400 mb-1">PRICING STRUCTURE</label>
+              <input type="text" id="editPrice" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">TOOL CATEGORY</label>
+            <input type="text" id="editCategory" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">EVALUATION MARKDOWN</label>
+            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBSITE CONFIGURATION MODAL -->
+  <div id="configModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="stark-card bg-black p-8 max-w-lg w-full space-y-6 border-2 border-white">
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+        <h2 class="text-2xl font-bold uppercase brand-font text-white">Site Configuration</h2>
+        <button onclick="closeConfigModal()" class="text-white font-mono font-bold">✕</button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-zinc-400 mb-1">SITE TITLE</label>
+          <input type="text" id="configSiteTitle" value="MOIRA.ACADEMIC" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PRIMARY AFFILIATE TRACKER PARAMETER</label>
+          <input type="text" id="configAffiliateTag" value="?ref=moira-academic" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">ANALYTICS BEACON TOKEN</label>
+          <input type="text" id="configAnalyticsToken" value="cf-beacon-token-here" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4 border-t border-zinc-800">
+        <button onclick="closeConfigModal()" class="border border-white px-4 py-2 text-xs font-mono uppercase text-white">Cancel</button>
+        <button onclick="saveSiteConfig()" class="stark-button px-5 py-2 text-xs uppercase">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allTools = [];
+    let toolsDatabase = {};
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("data/tools.json")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to load tools JSON");
+          return res.json();
+        })
+        .then((data) => {
+          allTools = data;
+          data.forEach((tool) => {
+            toolsDatabase[tool.id] = tool;
+          });
+          renderTools(allTools);
+        })
+        .catch((err) => {
+          console.error("Error loading tools:", err);
+          document.getElementById("tools-grid").innerHTML = `
+            <div class="col-span-full border border-red-500 p-6 text-center font-mono text-xs text-red-400">
+              Failed to load tools data. Ensure <code>data/tools.json</code> exists.
+            </div>
+          `;
+        });
+    });
+
+    function renderTools(tools) {
+      const container = document.getElementById("tools-grid");
+      if (!container) return;
+
+      if (tools.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center font-mono text-xs text-zinc-500 py-12">No matching academic tools found.</div>`;
+        return;
+      }
+
+      container.innerHTML = tools
+        .map(
+          (tool) => `
+        <div class="stark-card p-6 flex flex-col justify-between bg-black">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="font-mono text-xs border border-white px-2 py-0.5 text-white uppercase">${tool.category || 'SOFTWARE'}</span>
+              <span class="bg-white text-black font-mono font-bold text-xs px-2 py-0.5">${tool.rating || '★ 4.8'}</span>
+            </div>
+            <h3 class="text-2xl font-bold uppercase brand-font text-white">${tool.title}</h3>
+            <p class="text-sm text-zinc-300">${tool.description}</p>
+            <div class="pt-3 border-t border-zinc-800 flex justify-between items-center font-mono text-xs text-zinc-400">
+              <span>PRICING:</span>
+              <span class="text-white font-bold">${tool.price || 'Free Tier'}</span>
+            </div>
+          </div>
+          <div class="mt-8 pt-4 border-t border-zinc-800 flex items-center justify-between">
+            <a href="post.html?slug=${tool.id}" class="text-xs font-mono text-zinc-400 hover:text-white underline">Full Review</a>
+            <button onclick="openArticleModal('${tool.id}')" class="stark-button text-xs px-3 py-1.5 uppercase">Live Preview</button>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    function filterTools(category) {
+      if (category === "all") {
+        renderTools(allTools);
+      } else {
+        const filtered = allTools.filter((t) => t.category && t.category.toLowerCase().includes(category.toLowerCase()));
+        renderTools(filtered);
+      }
+    }
+
+    function searchTools() {
+      const query = document.getElementById("toolSearch").value.toLowerCase();
+      const filtered = allTools.filter(
+        (t) =>
+          t.title.toLowerCase().includes(query) ||
+          t.description.toLowerCase().includes(query) ||
+          (t.category && t.category.toLowerCase().includes(query))
+      );
+      renderTools(filtered);
+    }
+
+    function openArticleModal(key) {
+      const tool = toolsDatabase[key] || {
+        title: "Academic Tool Spec",
+        rating: "★ 4.8 / 5.0",
+        price: "Free Tier",
+        category: "Software",
+        markdown: "# Tool Overview\n\nDetailed software benchmark..."
+      };
+
+      document.getElementById("editTitle").value = tool.title;
+      document.getElementById("editRating").value = tool.rating || "★ 4.8 / 5.0";
+      document.getElementById("editPrice").value = tool.price || "Free Tier";
+      document.getElementById("editCategory").value = tool.category || "Software";
+      document.getElementById("editMarkdown").value = tool.markdown || `# ${tool.title}\n\n## Description\n${tool.description}\n\n## Academic Benchmarks\n- Accuracy & Citation Tracking\n- Workflow Efficiency Integration`;
+
+      updateLive();
+      document.getElementById("articleModal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeArticleModal() {
+      document.getElementById("articleModal").classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    function updateLive() {
+      const title = document.getElementById("editTitle").value;
+      const rating = document.getElementById("editRating").value;
+      const price = document.getElementById("editPrice").value;
+      const category = document.getElementById("editCategory").value;
+      const markdownText = document.getElementById("editMarkdown").value;
+
+      document.getElementById("articleTitle").innerText = title;
+      document.getElementById("articleRating").innerText = rating;
+      document.getElementById("articlePrice").innerText = price;
+      document.getElementById("modalCategory").innerText = category.toUpperCase();
+      document.getElementById("cardCategory").innerText = category.toUpperCase() + " EVALUATION";
+
+      if (typeof marked !== "undefined") {
+        document.getElementById("articleBody").innerHTML = marked.parse(markdownText);
+      }
+    }
+
+    function toggleEditor() {
+      const editor = document.getElementById("editorContainer");
+      const view = document.getElementById("viewContainer");
+      if (editor.classList.contains("hidden")) {
+        editor.classList.remove("hidden");
+        view.classList.remove("lg:col-span-12");
+        view.classList.add("lg:col-span-8");
+      } else {
+        editor.classList.add("hidden");
+        view.classList.remove("lg:col-span-8");
+        view.classList.add("lg:col-span-12");
+      }
+    }
+
+    function openConfigModal() {
+      document.getElementById('configModal').classList.remove('hidden');
+    }
+    function closeConfigModal() {
+      document.getElementById('configModal').classList.add('hidden');
+    }
+    function saveSiteConfig() {
+      const title = document.getElementById('configSiteTitle').value;
+      localStorage.setItem('moira_site_title', title);
+      alert('Configuration saved to local storage!');
+      closeConfigModal();
+    }
+  </script>
+</body>
+</html>
