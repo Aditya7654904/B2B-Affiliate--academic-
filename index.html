@@ -3,1354 +3,353 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Researchly — Discover Better Tools for Research & Education</title>
-
-  <meta
-    name="description"
-    content="Discover, compare and evaluate education, research, political science and productivity tools for modern knowledge teams."
-  >
-
-  <link rel="stylesheet" href="css/style.css">
+  <title>Moira.academic - Independent Academic Software & Research Stacks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #ffffff; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .stark-card { background-color: #000000; border: 2px solid #ffffff; box-shadow: 4px 4px 0px #ffffff; transition: all 0.2s ease; }
+    .stark-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ffffff; }
+    .stark-button { background-color: #ffffff; color: #000000; font-weight: 700; border: 2px solid #ffffff; box-shadow: 3px 3px 0px #888888; transition: all 0.15s ease; }
+    .stark-button:hover { background-color: #e5e5e5; transform: translate(-1px, -1px); box-shadow: 5px 5px 0px #ffffff; }
+    .prose-stark h1, .prose-stark h2, .prose-stark h3 { color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .prose-stark h1 { font-size: 1.875rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+    .prose-stark p { color: #d4d4d8; margin-bottom: 1rem; line-height: 1.7; }
+    .prose-stark ul { list-style-type: disc; padding-left: 1.25rem; color: #d4d4d8; margin-bottom: 1rem; }
+  </style>
 </head>
+<body class="min-h-screen flex flex-col selection:bg-white selection:text-black">
 
-<body>
-
-  <!-- =========================================
-       NAVIGATION
-  ========================================== -->
-
-  <header class="site-header" id="top">
-
-    <div class="container nav-container">
-
-      <a href="#top" class="logo">
-        <span class="logo-mark">R</span>
-        <span>researchly<span class="logo-dot">.</span></span>
-      </a>
-
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#tools">Tools</a>
-        <a href="#categories">Categories</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#articles">Articles</a>
-        <a href="#faq">FAQ</a>
+  <!-- Header Navigation Routing All 5 Core Pages -->
+  <header class="border-b-2 border-white bg-black sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight brand-font bg-white text-black px-3 py-1">MOIRA.ACADEMIC</a>
+      
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold tracking-wide uppercase">
+        <a href="index.html" class="underline underline-offset-4 decoration-2 text-white">Hub</a>
+        <a href="tools.html" class="hover:underline underline-offset-4 decoration-2 text-white">Tools Directory</a>
+        <a href="stack.html" class="hover:underline underline-offset-4 decoration-2 text-white">Research Stacks</a>
+        <a href="discounts.html" class="hover:underline underline-offset-4 decoration-2 text-white">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline underline-offset-4 decoration-2 text-white">Methodology</a>
       </nav>
 
-      <div class="nav-actions">
-        <a href="#articles" class="nav-link">Explore resources</a>
-        <a href="#newsletter" class="button button-dark button-small">
-          Get started
-        </a>
+      <div class="flex items-center gap-3">
+        <button onclick="openConfigModal()" class="border-2 border-white px-3 py-1.5 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">
+          ⚙️️ Site Config
+        </button>
+        <a href="discounts.html" class="stark-button px-4 py-2 text-xs uppercase tracking-wider hidden sm:inline-block">.EDU Deals</a>
       </div>
-
-      <button
-        class="mobile-menu-button"
-        id="mobileMenuButton"
-        aria-label="Open navigation"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
     </div>
-
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#tools">Tools</a>
-      <a href="#categories">Categories</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="#articles">Articles</a>
-      <a href="#faq">FAQ</a>
-      <a href="#newsletter">Get started</a>
-    </div>
-
   </header>
 
-
-  <main>
-
-    <!-- =========================================
-         HERO
-    ========================================== -->
-
-    <section class="hero">
-
-      <div class="hero-grid"></div>
-
-      <div class="container hero-container">
-
-        <div class="hero-copy">
-
-          <div class="eyebrow hero-eyebrow">
-            <span class="eyebrow-dot"></span>
-            The research & education tools directory
-          </div>
-
-          <h1>
-            Find the tools
-            <span>behind better</span>
-            research.
-          </h1>
-
-          <p class="hero-description">
-            Discover, compare and evaluate software for education,
-            academic research, political science, productivity and
-            knowledge-driven teams.
-          </p>
-
-          <div class="hero-actions">
-
-            <a href="#tools" class="button button-primary">
-              Explore tools
-              <span>→</span>
-            </a>
-
-            <a href="#how-it-works" class="text-button">
-              How it works
-              <span>↓</span>
-            </a>
-
-          </div>
-
-          <div class="hero-trust">
-
-            <div class="avatar-stack">
-              <span>R</span>
-              <span>E</span>
-              <span>A</span>
-              <span>+</span>
-            </div>
-
-            <div>
-              <strong>Built for knowledge-driven teams</strong>
-              <small>Researchers · Educators · Analysts · Students</small>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="hero-visual">
-
-          <div class="visual-glow"></div>
-
-          <div class="dashboard-card">
-
-            <div class="dashboard-top">
-              <div>
-                <span class="dashboard-label">TOOL DISCOVERY</span>
-                <h3>Research stack</h3>
-              </div>
-
-              <span class="live-pill">
-                <i></i> Curated
-              </span>
-            </div>
-
-            <div class="search-box">
-              <span>⌕</span>
-              <span>Search research tools...</span>
-              <kbd>⌘ K</kbd>
-            </div>
-
-            <div class="tool-preview-list">
-
-              <div class="tool-preview">
-                <div class="tool-icon purple">R</div>
-                <div class="tool-info">
-                  <strong>Research database</strong>
-                  <small>Academic discovery</small>
-                </div>
-                <span class="tool-score">9.4</span>
-              </div>
-
-              <div class="tool-preview">
-                <div class="tool-icon blue">C</div>
-                <div class="tool-info">
-                  <strong>Citation manager</strong>
-                  <small>References & bibliography</small>
-                </div>
-                <span class="tool-score">9.1</span>
-              </div>
-
-              <div class="tool-preview">
-                <div class="tool-icon green">A</div>
-                <div class="tool-info">
-                  <strong>Analysis platform</strong>
-                  <small>Data & visualization</small>
-                </div>
-                <span class="tool-score">8.9</span>
-              </div>
-
-            </div>
-
-            <div class="dashboard-footer">
-              <span>120+ tools researched</span>
-              <a href="#tools">View directory →</a>
-            </div>
-
-          </div>
-
-          <div class="floating-card floating-card-one">
-            <span class="floating-icon">✦</span>
-            <div>
-              <strong>Expert insights</strong>
-              <small>Independent comparisons</small>
-            </div>
-          </div>
-
-          <div class="floating-card floating-card-two">
-            <span class="floating-icon green-icon">✓</span>
-            <div>
-              <strong>Verified resources</strong>
-              <small>Updated regularly</small>
-            </div>
-          </div>
-
-        </div>
-
+  <!-- Hero Section -->
+  <section class="border-b-2 border-white py-20 px-6 bg-black">
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="inline-block border border-white px-4 py-1 text-xs font-mono uppercase tracking-widest bg-zinc-900 text-white">
+        Academic & Literature Research Vault
       </div>
-
-    </section>
-
-
-    <!-- =========================================
-         LOGO / TRUST STRIP
-    ========================================== -->
-
-    <section class="trust-strip">
-
-      <div class="container">
-
-        <p>Useful resources for teams working across</p>
-
-        <div class="trust-items">
-          <span>EDUCATION</span>
-          <span>RESEARCH</span>
-          <span>POLICY</span>
-          <span>DATA</span>
-          <span>PRODUCTIVITY</span>
-          <span>KNOWLEDGE</span>
-        </div>
-
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight uppercase brand-font text-white">
+        Rigorous Software Evaluations For Higher Ed
+      </h1>
+      <p class="text-lg text-zinc-300 max-w-2xl mx-auto font-normal">
+        Independent breakdowns of AI research tools, citation workflows, reference managers, and grant writing software. Verified student and institutional pricing.
+      </p>
+      <div class="pt-4 flex flex-wrap justify-center gap-4">
+        <a href="tools.html" class="stark-button px-8 py-3.5 text-base uppercase">Explore Academic Tools →</a>
+        <a href="stack.html" class="border-2 border-white px-8 py-3.5 text-base font-bold uppercase hover:bg-white hover:text-black transition-colors text-white">Research Stacks</a>
       </div>
+    </div>
+  </section>
 
-    </section>
+  <!-- Quick Page Navigation Ribbon -->
+  <section class="border-b-2 border-white bg-zinc-950 py-6 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-4 text-center font-mono text-xs uppercase">
+      <a href="tools.html" class="p-3 border border-zinc-700 hover:border-white hover:bg-white hover:text-black transition-all">
+        📁 Tools Index
+      </a>
+      <a href="stack.html" class="p-3 border border-zinc-700 hover:border-white hover:bg-white hover:text-black transition-all">
+        📚 Research Stacks
+      </a>
+      <a href="discounts.html" class="p-3 border border-zinc-700 hover:border-white hover:bg-white hover:text-black transition-all">
+        🎓 Edu Deals (.EDU)
+      </a>
+      <a href="methodology.html" class="p-3 border border-zinc-700 hover:border-white hover:bg-white hover:text-black transition-all">
+        🔬 Evaluation Ethics
+      </a>
+      <a href="post.html?slug=top-ai-research-tools-2026" class="p-3 border border-zinc-700 hover:border-white hover:bg-white hover:text-black transition-all">
+        📄 Peer Evaluation
+      </a>
+    </div>
+  </section>
 
-
-    <!-- =========================================
-         STATS
-    ========================================== -->
-
-    <section class="stats-section">
-
-      <div class="container stats-grid">
-
-        <div class="stat">
-          <strong>120+</strong>
-          <span>Tools & platforms</span>
-        </div>
-
-        <div class="stat">
-          <strong>7</strong>
-          <span>Research categories</span>
-        </div>
-
-        <div class="stat">
-          <strong>50+</strong>
-          <span>Educational guides</span>
-        </div>
-
-        <div class="stat">
-          <strong>Weekly</strong>
-          <span>Resource updates</span>
-        </div>
-
+  <!-- Dynamic Featured Academic Software Catalog -->
+  <section id="featured-tools" class="py-20 px-6 border-b-2 border-white max-w-7xl mx-auto w-full">
+    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">Academic Catalog</span>
+        <h2 class="text-3xl font-bold uppercase mt-1 brand-font text-white">Featured Research Tools</h2>
       </div>
-
-    </section>
-
-
-    <!-- =========================================
-         TOOLS
-    ========================================== -->
-
-    <section class="section tools-section" id="tools">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <div>
-            <span class="section-eyebrow">TOOL DIRECTORY</span>
-
-            <h2>
-              Tools selected for
-              <span>real workflows.</span>
-            </h2>
-          </div>
-
-          <p>
-            Explore software categories that help researchers,
-            educators and knowledge teams work more effectively.
-          </p>
-
-        </div>
-
-
-        <div class="tool-grid">
-
-          <article class="tool-card featured-tool">
-            <div class="tool-card-top">
-              <span class="tool-card-icon purple">R</span>
-              <span class="recommended">Popular</span>
-            </div>
-
-            <h3>Research & Discovery</h3>
-
-            <p>
-              Find academic literature, organize sources,
-              discover papers and accelerate research workflows.
-            </p>
-
-            <div class="tool-tags">
-              <span>Literature</span>
-              <span>Databases</span>
-              <span>Discovery</span>
-            </div>
-
-            <a href="#articles">Explore category →</a>
-          </article>
-
-
-          <article class="tool-card">
-            <div class="tool-card-top">
-              <span class="tool-card-icon blue">E</span>
-            </div>
-
-            <h3>Education Technology</h3>
-
-            <p>
-              Platforms for teaching, assessment, learning,
-              collaboration and student engagement.
-            </p>
-
-            <div class="tool-tags">
-              <span>LMS</span>
-              <span>Teaching</span>
-              <span>Assessment</span>
-            </div>
-
-            <a href="#articles">Explore category →</a>
-          </article>
-
-
-          <article class="tool-card">
-            <div class="tool-card-top">
-              <span class="tool-card-icon green">D</span>
-            </div>
-
-            <h3>Data & Analysis</h3>
-
-            <p>
-              Discover platforms for quantitative research,
-              visualization, statistics and data analysis.
-            </p>
-
-            <div class="tool-tags">
-              <span>Statistics</span>
-              <span>Data</span>
-              <span>Charts</span>
-            </div>
-
-            <a href="#articles">Explore category →</a>
-          </article>
-
-
-          <article class="tool-card">
-            <div class="tool-card-top">
-              <span class="tool-card-icon orange">P</span>
-            </div>
-
-            <h3>Political Science</h3>
-
-            <p>
-              Research resources covering public policy,
-              comparative politics, governance and political data.
-            </p>
-
-            <div class="tool-tags">
-              <span>Policy</span>
-              <span>Governance</span>
-              <span>Datasets</span>
-            </div>
-
-            <a href="#articles">Explore category →</a>
-          </article>
-
-
-          <article class="tool-card">
-            <div class="tool-card-top">
-              <span class="tool-card-icon pink">A</span>
-            </div>
-
-            <h3>AI for Research</h3>
-
-            <p>
-              Explore AI-assisted tools for summarization,
-              literature review, writing and research workflows.
-            </p>
-
-            <div class="tool-tags">
-              <span>AI</span>
-              <span>Writing</span>
-              <span>Research</span>
-            </div>
-
-            <a href="#articles">Explore category →</a>
-          </article>
-
-
-          <article class="tool-card">
-            <div class="tool-card-top">
-              <span class="tool-card-icon cyan">W</span>
-            </div>
-
-            <h3>Productivity</h3>
-
-            <p>
-              Knowledge management, notes, collaboration,
-              project management and workflow tools.
-            </p>
-
-            <div class="tool-tags">
-              <span>Notes</span>
-              <span>Workflow</span>
-              <span>Teams</span>
-            </div>
-
-            <a href="#articles">Explore category →</a>
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         AFFILIATE VALUE PROPOSITION
-    ========================================== -->
-
-    <section class="section dark-section">
-
-      <div class="container split-section">
-
-        <div class="split-copy">
-
-          <span class="section-eyebrow purple-eyebrow">
-            FOR KNOWLEDGE TEAMS
-          </span>
-
-          <h2>
-            Less time searching.
-            <span>More time doing.</span>
-          </h2>
-
-          <p>
-            The modern research stack is crowded. We help people
-            understand what different tools do, where they fit,
-            and which workflows they can support.
-          </p>
-
-          <div class="check-list">
-
-            <div>
-              <span>✓</span>
-              <p>Clear feature and use-case explanations</p>
-            </div>
-
-            <div>
-              <span>✓</span>
-              <p>Practical comparisons and educational guides</p>
-            </div>
-
-            <div>
-              <span>✓</span>
-              <p>Resources organized by research workflow</p>
-            </div>
-
-            <div>
-              <span>✓</span>
-              <p>Transparent links to relevant providers</p>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="workflow-card">
-
-          <div class="workflow-header">
-            <span>RESEARCH WORKFLOW</span>
-            <span>01 — 04</span>
-          </div>
-
-          <div class="workflow-line"></div>
-
-          <div class="workflow-step active">
-            <span class="workflow-number">01</span>
-            <div>
-              <strong>Define the problem</strong>
-              <small>Identify your research workflow</small>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <span class="workflow-number">02</span>
-            <div>
-              <strong>Explore tools</strong>
-              <small>Compare relevant solutions</small>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <span class="workflow-number">03</span>
-            <div>
-              <strong>Evaluate options</strong>
-              <small>Review features and fit</small>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <span class="workflow-number">04</span>
-            <div>
-              <strong>Choose your stack</strong>
-              <small>Visit the provider and decide</small>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         CATEGORIES
-    ========================================== -->
-
-    <section class="section categories-section" id="categories">
-
-      <div class="container">
-
-        <div class="center-heading">
-
-          <span class="section-eyebrow">EXPLORE BY NEED</span>
-
-          <h2>
-            One place for your
-            <span>research stack.</span>
-          </h2>
-
-          <p>
-            Start with the workflow you need to improve,
-            then discover relevant tools and resources.
-          </p>
-
-        </div>
-
-
-        <div class="category-grid">
-
-          <a href="#articles" class="category-card category-purple">
-            <span class="category-number">01</span>
-            <span class="category-symbol">⌁</span>
-            <h3>Research</h3>
-            <p>Literature, papers, references and discovery.</p>
-            <span class="category-arrow">↗</span>
-          </a>
-
-          <a href="#articles" class="category-card category-blue">
-            <span class="category-number">02</span>
-            <span class="category-symbol">▣</span>
-            <h3>Education</h3>
-            <p>Learning, teaching, assessment and classrooms.</p>
-            <span class="category-arrow">↗</span>
-          </a>
-
-          <a href="#articles" class="category-card category-green">
-            <span class="category-number">03</span>
-            <span class="category-symbol">◌</span>
-            <h3>Data</h3>
-            <p>Analysis, visualization and research datasets.</p>
-            <span class="category-arrow">↗</span>
-          </a>
-
-          <a href="#articles" class="category-card category-orange">
-            <span class="category-number">04</span>
-            <span class="category-symbol">◇</span>
-            <h3>Political Science</h3>
-            <p>Policy, governance and political research.</p>
-            <span class="category-arrow">↗</span>
-          </a>
-
-          <a href="#articles" class="category-card category-pink">
-            <span class="category-number">05</span>
-            <span class="category-symbol">✦</span>
-            <h3>AI Research</h3>
-            <p>AI-assisted research and knowledge workflows.</p>
-            <span class="category-arrow">↗</span>
-          </a>
-
-          <a href="#articles" class="category-card category-dark">
-            <span class="category-number">06</span>
-            <span class="category-symbol">+</span>
-            <h3>Productivity</h3>
-            <p>Notes, projects, collaboration and workflows.</p>
-            <span class="category-arrow">↗</span>
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         HOW IT WORKS
-    ========================================== -->
-
-    <section class="section how-section" id="how-it-works">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <div>
-            <span class="section-eyebrow">HOW IT WORKS</span>
-
-            <h2>
-              From question to
-              <span>the right tool.</span>
-            </h2>
-          </div>
-
-          <p>
-            Our content is designed to make software discovery
-            easier for people with real research and education needs.
-          </p>
-
-        </div>
-
-
-        <div class="steps-grid">
-
-          <div class="step-card">
-            <span class="step-index">01</span>
-            <div class="step-icon">⌕</div>
-            <h3>Start with a need</h3>
-            <p>
-              Find resources based on the problem,
-              workflow or type of work you're trying to solve.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <span class="step-index">02</span>
-            <div class="step-icon">≋</div>
-            <h3>Compare options</h3>
-            <p>
-              Learn how different tools approach the same
-              workflow and understand important differences.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <span class="step-index">03</span>
-            <div class="step-icon">✓</div>
-            <h3>Make an informed choice</h3>
-            <p>
-              Follow the provider link, review current details,
-              and choose the solution that fits your needs.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         FEATURED TOOLS
-    ========================================== -->
-
-    <section class="section featured-tools-section">
-
-      <div class="container">
-
-        <div class="featured-tools-header">
-
-          <div>
-            <span class="section-eyebrow">FEATURED RESOURCES</span>
-
-            <h2>
-              Start exploring.
-            </h2>
-          </div>
-
-          <a href="#articles" class="button button-outline">
-            Browse all resources →
-          </a>
-
-        </div>
-
-
-        <div class="featured-tools-list">
-
-          <article class="featured-tool-row">
-
-            <div class="row-icon purple">R</div>
-
-            <div class="row-main">
-              <span class="row-category">RESEARCH</span>
-              <h3>Academic discovery platforms</h3>
-              <p>Tools for finding and organizing scholarly literature.</p>
-            </div>
-
-            <div class="row-features">
-              <span>Literature</span>
-              <span>Discovery</span>
-            </div>
-
-            <a href="#articles" class="row-arrow">→</a>
-
-          </article>
-
-
-          <article class="featured-tool-row">
-
-            <div class="row-icon blue">E</div>
-
-            <div class="row-main">
-              <span class="row-category">EDUCATION</span>
-              <h3>Learning management systems</h3>
-              <p>Platforms for courses, classrooms and digital learning.</p>
-            </div>
-
-            <div class="row-features">
-              <span>Learning</span>
-              <span>Courses</span>
-            </div>
-
-            <a href="#articles" class="row-arrow">→</a>
-
-          </article>
-
-
-          <article class="featured-tool-row">
-
-            <div class="row-icon green">D</div>
-
-            <div class="row-main">
-              <span class="row-category">DATA</span>
-              <h3>Research analysis software</h3>
-              <p>Solutions for analysis, visualization and data workflows.</p>
-            </div>
-
-            <div class="row-features">
-              <span>Analytics</span>
-              <span>Visualization</span>
-            </div>
-
-            <a href="#articles" class="row-arrow">→</a>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         ARTICLES
-    ========================================== -->
-
-    <section class="section articles-section" id="articles">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <div>
-            <span class="section-eyebrow">INSIGHTS & RESOURCES</span>
-
-            <h2>
-              Ideas, tools &
-              <span>research insights.</span>
-            </h2>
-          </div>
-
-          <div class="heading-side">
-
-            <p>
-              Practical guides, research insights and tool
-              recommendations for knowledge-driven teams.
-            </p>
-
-            <a href="#articles" class="text-button">
-              View all articles →
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- Featured Article -->
-
-        <article class="featured-article">
-
-          <div class="featured-article-visual">
-            <span class="featured-label">FEATURED GUIDE</span>
-
-            <div class="article-visual-pattern"></div>
-
-            <div class="article-visual-center">
-              <span>R</span>
-            </div>
-          </div>
-
-          <div class="featured-article-copy">
-
-            <div class="article-meta">
-              <span>RESEARCH TOOLS</span>
-              <span>8 MIN READ</span>
-            </div>
-
-            <h3>
-              How to Choose the Right Research Tools
-              for Education & Political Science
-            </h3>
-
-            <p>
-              A practical framework for comparing databases,
-              research platforms, productivity tools, citation
-              software and AI-assisted research solutions.
-            </p>
-
-            <a href="#" class="article-link">
-              Read the guide
-              <span>→</span>
-            </a>
-
-          </div>
-
-        </article>
-
-
-        <!-- Article Cards -->
-
-        <div class="article-grid">
-
-          <article class="article-card">
-
-            <div class="article-image image-education">
-              <span>EDUCATION</span>
-              <div class="article-image-symbol">E</div>
-            </div>
-
-            <div class="article-content">
-
-              <div class="article-meta">
-                <span>EDUCATION</span>
-                <span>6 MIN READ</span>
-              </div>
-
-              <h3>
-                7 Types of Digital Tools Every
-                Modern Educator Should Know
-              </h3>
-
-              <p>
-                Explore useful categories of platforms for teaching,
-                assessment, collaboration and learning.
-              </p>
-
-              <a href="#" class="article-link">
-                Read article <span>→</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <article class="article-card">
-
-            <div class="article-image image-politics">
-              <span>POLITICAL SCIENCE</span>
-              <div class="article-image-symbol">P</div>
-            </div>
-
-            <div class="article-content">
-
-              <div class="article-meta">
-                <span>POLITICAL SCIENCE</span>
-                <span>9 MIN READ</span>
-              </div>
-
-              <h3>
-                A Practical Guide to Political
-                Science Research & Data Sources
-              </h3>
-
-              <p>
-                Understand major types of datasets, archives,
-                scholarly resources and analytical tools.
-              </p>
-
-              <a href="#" class="article-link">
-                Read article <span>→</span>
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <article class="article-card">
-
-            <div class="article-image image-productivity">
-              <span>PRODUCTIVITY</span>
-              <div class="article-image-symbol">W</div>
-            </div>
-
-            <div class="article-content">
-
-              <div class="article-meta">
-                <span>PRODUCTIVITY</span>
-                <span>5 MIN READ</span>
-              </div>
-
-              <h3>
-                How Research Teams Can Build
-                a More Efficient Digital Workflow
-              </h3>
-
-              <p>
-                Discover practical ways to organize sources,
-                manage references and reduce workflow friction.
-              </p>
-
-              <a href="#" class="article-link">
-                Read article <span>→</span>
-              </a>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         TESTIMONIALS
-    ========================================== -->
-
-    <section class="section testimonials-section">
-
-      <div class="container">
-
-        <div class="center-heading">
-
-          <span class="section-eyebrow">COMMUNITY</span>
-
-          <h2>
-            Built around
-            <span>useful information.</span>
-          </h2>
-
-          <p>
-            Example customer feedback can be replaced with
-            verified testimonials as your platform grows.
-          </p>
-
-        </div>
-
-
-        <div class="testimonial-grid">
-
-          <article class="testimonial-card">
-
-            <div class="quote-mark">“</div>
-
-            <p>
-              “The biggest value is having different categories
-              of research software explained in plain language.
-              It makes the discovery process much easier.”
-            </p>
-
-            <div class="person">
-              <div class="person-avatar">JM</div>
-              <div>
-                <strong>Jordan M.</strong>
-                <span>Research Analyst</span>
-              </div>
-            </div>
-
-          </article>
-
-
-          <article class="testimonial-card testimonial-featured">
-
-            <div class="quote-mark">“</div>
-
-            <p>
-              “Instead of starting with a giant list of software,
-              I can start with what I'm trying to accomplish and
-              work backwards to the right category.”
-            </p>
-
-            <div class="person">
-              <div class="person-avatar">SK</div>
-              <div>
-                <strong>Sarah K.</strong>
-                <span>Education Consultant</span>
-              </div>
-            </div>
-
-          </article>
-
-
-          <article class="testimonial-card">
-
-            <div class="quote-mark">“</div>
-
-            <p>
-              “The comparison-style content is especially useful
-              when you're evaluating tools for a team rather than
-              just choosing something for yourself.”
-            </p>
-
-            <div class="person">
-              <div class="person-avatar">DL</div>
-              <div>
-                <strong>Daniel L.</strong>
-                <span>Knowledge Manager</span>
-              </div>
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         AFFILIATE DISCLOSURE
-    ========================================== -->
-
-    <section class="disclosure-section">
-
-      <div class="container disclosure-box">
-
-        <span class="disclosure-icon">i</span>
-
-        <div>
-          <strong>About our recommendations</strong>
-          <p>
-            Some links on Researchly may be affiliate links. If you
-            choose to purchase a product or subscribe through one
-            of these links, we may receive a commission at no
-            additional cost to you. Our educational content is
-            designed to help readers evaluate tools and providers.
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         FAQ
-    ========================================== -->
-
-    <section class="section faq-section" id="faq">
-
-      <div class="container faq-layout">
-
-        <div class="faq-heading">
-
-          <span class="section-eyebrow">FAQ</span>
-
-          <h2>
-            Questions,
-            <span>answered.</span>
-          </h2>
-
-          <p>
-            Everything you need to know about the platform,
-            recommendations and resources.
-          </p>
-
-          <a href="mailto:hello@example.com" class="text-button">
-            Still have a question? →
-          </a>
-
-        </div>
-
-
-        <div class="faq-list">
-
-          <details class="faq-item" open>
-            <summary>
-              What is Researchly?
-              <span>+</span>
-            </summary>
-
-            <div class="faq-answer">
-              Researchly is a discovery and educational platform
-              focused on software and digital resources for
-              research, education, data, political science and
-              productivity.
-            </div>
-          </details>
-
-
-          <details class="faq-item">
-            <summary>
-              How do you select tools?
-              <span>+</span>
-            </summary>
-
-            <div class="faq-answer">
-              Tools can be organized and reviewed according to
-              features, intended users, workflows, pricing,
-              integrations and other publicly available information.
-              Individual articles should clearly state when
-              information is sponsored or affiliate-supported.
-            </div>
-          </details>
-
-
-          <details class="faq-item">
-            <summary>
-              Are recommendations sponsored?
-              <span>+</span>
-            </summary>
-
-            <div class="faq-answer">
-              Some links may be affiliate links. Affiliate
-              relationships do not need to change the educational
-              purpose of the content. Relevant commercial
-              relationships should be disclosed clearly.
-            </div>
-          </details>
-
-
-          <details class="faq-item">
-            <summary>
-              Do you provide political opinions?
-              <span>+</span>
-            </summary>
-
-            <div class="faq-answer">
-              The political-science section is intended for
-              education and research. Content should distinguish
-              documented facts, research findings, competing
-              interpretations and opinions rather than promoting
-              political candidates, parties or electoral choices.
-            </div>
-          </details>
-
-
-          <details class="faq-item">
-            <summary>
-              Can companies submit their tools?
-              <span>+</span>
-            </summary>
-
-            <div class="faq-answer">
-              Yes. You can create a future partner submission
-              process for software companies that want their
-              products considered for inclusion.
-            </div>
-          </details>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         NEWSLETTER CTA
-    ========================================== -->
-
-    <section class="newsletter-section" id="newsletter">
-
-      <div class="container">
-
-        <div class="newsletter-card">
-
-          <div class="newsletter-decoration"></div>
-
-          <div class="newsletter-content">
-
-            <span class="section-eyebrow purple-eyebrow">
-              WEEKLY RESEARCH BRIEF
-            </span>
-
-            <h2>
-              Useful tools.
-              <span>Better research.</span>
-            </h2>
-
-            <p>
-              Get practical resources, new tool discoveries,
-              comparisons and research-focused insights.
-            </p>
-
-            <form class="newsletter-form" id="newsletterForm">
-
-              <input
-                type="email"
-                placeholder="Enter your work email"
-                required
-                aria-label="Email address"
-              >
-
-              <button type="submit" class="button button-primary">
-                Subscribe →
-              </button>
-
-            </form>
-
-            <small>
-              No spam. Unsubscribe whenever you want.
-            </small>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =========================================
-       FOOTER
-  ========================================== -->
-
-  <footer class="site-footer">
-
-    <div class="container">
-
-      <div class="footer-top">
-
-        <div class="footer-brand">
-
-          <a href="#top" class="logo footer-logo">
-            <span class="logo-mark">R</span>
-            <span>researchly<span class="logo-dot">.</span></span>
-          </a>
-
-          <p>
-            A discovery platform for better research,
-            education and knowledge workflows.
-          </p>
-
-          <div class="social-links">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="X">𝕏</a>
-            <a href="#" aria-label="YouTube">▶</a>
-          </div>
-
-        </div>
-
-
-        <div class="footer-column">
-
-          <h4>Platform</h4>
-
-          <a href="#tools">Tool directory</a>
-          <a href="#categories">Categories</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#articles">Resources</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-          <h4>Resources</h4>
-
-          <a href="#articles">Research guides</a>
-          <a href="#articles">Education tools</a>
-          <a href="#articles">Political science</a>
-          <a href="#articles">Productivity</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-          <h4>Company</h4>
-
-          <a href="#faq">About</a>
-          <a href="#faq">FAQ</a>
-          <a href="mailto:hello@example.com">Contact</a>
-          <a href="#newsletter">Newsletter</a>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <span>
-          © <span id="currentYear"></span> Researchly. All rights reserved.
-        </span>
-
-        <div>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Affiliate disclosure</a>
-        </div>
-
-      </div>
-
+      <a href="tools.html" class="text-xs font-mono underline hover:text-zinc-300 text-white">View All Categorized Tools →</a>
     </div>
 
+    <div id="featured-tools-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="col-span-full font-mono text-xs text-zinc-500 text-center py-12">Loading Academic Software Data...</div>
+    </div>
+  </section>
+
+  <!-- Research Stacks Preview Section (Routes to stack.html) -->
+  <section class="py-20 px-6 border-b-2 border-white max-w-7xl mx-auto w-full bg-zinc-950">
+    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">WORKFLOW BUNDLES</span>
+        <h2 class="text-3xl font-bold uppercase mt-1 brand-font text-white">Curated Research Stacks</h2>
+      </div>
+      <a href="stack.html" class="stark-button text-xs px-4 py-2 uppercase">Open Stacks Directory →</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="stark-card p-6 flex flex-col justify-between bg-black">
+        <div class="space-y-4">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="border border-white px-2 py-0.5 text-white">PHD WORKFLOW</span>
+            <span class="text-zinc-400">Free / Open-Source</span>
+          </div>
+          <h3 class="text-2xl font-bold uppercase brand-font text-white">PhD Literature Synthesis Stack</h3>
+          <p class="text-sm text-zinc-300">Automated paper discovery, semantic graph mapping, and reference synchronization.</p>
+          <div class="font-mono text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+            Included: ResearchRabbit + Zotero + Elicit
+          </div>
+        </div>
+        <a href="stack.html#phd-stack" class="stark-button text-xs px-3 py-2 uppercase text-center mt-6">View Complete Stack →</a>
+      </div>
+
+      <div class="stark-card p-6 flex flex-col justify-between bg-black">
+        <div class="space-y-4">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="border border-white px-2 py-0.5 text-white">PUBLISHING</span>
+            <span class="text-zinc-400">$12/mo Edu</span>
+          </div>
+          <h3 class="text-2xl font-bold uppercase brand-font text-white">LaTeX & Journal Publishing Stack</h3>
+          <p class="text-sm text-zinc-300">End-to-end peer review drafting, mathematical typesetting, and journal formatting.</p>
+          <div class="font-mono text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+            Included: Overleaf + Claude 3.5 + Mathpix
+          </div>
+        </div>
+        <a href="stack.html#latex-stack" class="stark-button text-xs px-3 py-2 uppercase text-center mt-6">View Complete Stack →</a>
+      </div>
+
+      <div class="stark-card p-6 flex flex-col justify-between bg-black">
+        <div class="space-y-4">
+          <div class="flex justify-between items-center text-xs font-mono">
+            <span class="border border-white px-2 py-0.5 text-white">QUALITATIVE</span>
+            <span class="text-zinc-400">Institutional</span>
+          </div>
+          <h3 class="text-2xl font-bold uppercase brand-font text-white">Qualitative Coding & Analysis Stack</h3>
+          <p class="text-sm text-zinc-300">AI-assisted thematic coding, interview transcription, and ethnographic analysis.</p>
+          <div class="font-mono text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+            Included: NVivo + Otter.ai + ATLAS.ti
+          </div>
+        </div>
+        <a href="stack.html#qual-stack" class="stark-button text-xs px-3 py-2 uppercase text-center mt-6">View Complete Stack →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Peer-Reviewed Markdown Evaluations (Routes to post.html) -->
+  <section id="articles" class="py-20 px-6 border-b-2 border-white max-w-7xl mx-auto w-full">
+    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <span class="font-mono text-xs text-zinc-400 uppercase tracking-widest">CONTENT VAULT</span>
+        <h2 class="text-3xl font-bold uppercase mt-1 brand-font text-white">Recent Evaluation Papers</h2>
+      </div>
+      <p class="text-zinc-400 text-sm max-w-md">Detailed research evaluations fetched directly from local <code>posts/*.md</code> files.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="stark-card p-6 flex flex-col justify-between bg-zinc-950">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400">
+            <span class="border border-white text-white px-2 py-0.5">PAPER</span>
+            <span>top-ai-research-tools-2026.md</span>
+          </div>
+          <h3 class="text-2xl font-bold uppercase brand-font text-white">AI Citation & Synthesis Benchmarks</h3>
+          <p class="text-sm text-zinc-300">Benchmarking hallucination rates and citation accuracy across Elicit, Consensus, and Scite.</p>
+        </div>
+        <a href="post.html?slug=top-ai-research-tools-2026" class="stark-button text-xs px-3 py-2 uppercase text-center mt-6">Read Full Evaluation →</a>
+      </div>
+
+      <div class="stark-card p-6 flex flex-col justify-between bg-zinc-950">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400">
+            <span class="border border-white text-white px-2 py-0.5">COMPARISON</span>
+            <span>zotero-vs-mendeley.md</span>
+          </div>
+          <h3 class="text-2xl font-bold uppercase brand-font text-white">Zotero vs Mendeley vs EndNote</h3>
+          <p class="text-sm text-zinc-300">Comparing open-source reference privacy against proprietary cloud ecosystem lock-in.</p>
+        </div>
+        <a href="post.html?slug=zotero-vs-mendeley" class="stark-button text-xs px-3 py-2 uppercase text-center mt-6">Read Full Evaluation →</a>
+      </div>
+
+      <div class="stark-card p-6 flex flex-col justify-between bg-zinc-950">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400">
+            <span class="border border-white text-white px-2 py-0.5">GUIDE</span>
+            <span>academic-integrity-ai-2026.md</span>
+          </div>
+          <h3 class="text-2xl font-bold uppercase brand-font text-white">University AI Policy & Ethics Guide</h3>
+          <p class="text-sm text-zinc-300">Guidelines for ethical LLM usage in literature reviews without violating academic integrity.</p>
+        </div>
+        <a href="post.html?slug=academic-integrity-ai-2026" class="stark-button text-xs px-3 py-2 uppercase text-center mt-6">Read Full Evaluation →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edu Discounts Banner (Routes to discounts.html) -->
+  <section class="py-16 px-6 border-b-2 border-white bg-white text-black">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="border border-black px-2 py-0.5 font-mono text-xs font-bold uppercase">VERIFIED .EDU SAVINGS</span>
+        <h2 class="text-3xl font-bold uppercase brand-font">Are You a Student or University Faculty?</h2>
+        <p class="text-sm text-zinc-800 max-w-xl">
+          Access our verified directory of free software grants, student discounts, and university site licensing workflows.
+        </p>
+      </div>
+      <a href="discounts.html" class="bg-black text-white font-bold px-8 py-4 text-sm uppercase tracking-wider border-2 border-black hover:bg-zinc-800 transition-colors shrink-0">
+        Claim .EDU Discounts →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-12 px-6 bg-black text-zinc-400 text-xs border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="text-white font-bold text-lg brand-font">MOIRA.ACADEMIC</span>
+        <p class="max-w-md">Independent academic software evaluations and research stack intelligence.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 font-mono text-white">
+        <a href="index.html" class="hover:underline">Hub</a>
+        <a href="tools.html" class="hover:underline">Tools</a>
+        <a href="stack.html" class="hover:underline">Stacks</a>
+        <a href="discounts.html" class="hover:underline">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline">Methodology</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- FULLSCREEN INTERACTIVE ARTICLE READER & LIVE EDITOR MODAL -->
+  <div id="articleModal" class="fixed inset-0 bg-black z-50 hidden flex flex-col overflow-hidden">
+    <div class="border-b-2 border-white bg-black px-6 py-4 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-4">
+        <span class="text-xl font-bold brand-font bg-white text-black px-2 py-0.5">MOIRA LIVE EDITOR</span>
+        <span id="modalCategory" class="text-xs font-mono border border-zinc-700 px-2 py-1 text-zinc-300">ACADEMIC PREVIEW</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleEditor()" class="border border-white text-xs px-3 py-1.5 font-mono uppercase hover:bg-white hover:text-black text-white">⚡ Toggle Live Editor</button>
+        <button onclick="closeArticleModal()" class="stark-button text-xs px-4 py-1.5 uppercase">✕ Close</button>
+      </div>
+    </div>
 
-  <script src="js/main.js"></script>
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+      <div id="viewContainer" class="lg:col-span-8 overflow-y-auto p-6 md:p-10 border-r-2 border-white space-y-8">
+        <div class="border-2 border-white p-6 bg-zinc-950 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <div>
+              <span id="cardCategory" class="text-xs font-mono text-zinc-400 uppercase tracking-widest">RESEARCH EVALUATION</span>
+              <h1 id="articleTitle" class="text-3xl font-bold uppercase mt-1 brand-font text-white">Evaluation Title</h1>
+            </div>
+            <div class="text-right">
+              <span id="articleRating" class="bg-white text-black font-mono font-bold text-lg px-3 py-1 inline-block">★ 4.9 / 5.0</span>
+              <div id="articlePrice" class="text-xs font-mono text-zinc-400 mt-1">Free for Students</div>
+            </div>
+          </div>
+        </div>
+        <div id="articleBody" class="prose-stark"></div>
+      </div>
 
+      <div id="editorContainer" class="lg:col-span-4 bg-zinc-950 p-6 overflow-y-auto space-y-6 flex flex-col border-t-2 lg:border-t-0 border-white">
+        <div class="border-b border-zinc-800 pb-3">
+          <h2 class="text-lg font-bold uppercase brand-font text-white">Live Content Controls</h2>
+          <p class="text-xs text-zinc-400 font-mono">Test live Markdown rendering for academic papers.</p>
+        </div>
+        <div class="space-y-4 font-mono text-xs">
+          <div>
+            <label class="block text-zinc-400 mb-1">PAPER TITLE</label>
+            <input type="text" id="editTitle" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-zinc-400 mb-1">BENCHMARK / SCORE</label>
+              <input type="text" id="editRating" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+            <div>
+              <label class="block text-zinc-400 mb-1">PRICING / EDU TIER</label>
+              <input type="text" id="editPrice" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">ACADEMIC CATEGORY</label>
+            <input type="text" id="editCategory" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">MARKDOWN BODY / ABSTRACT</label>
+            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBSITE CONFIGURATION MODAL (INTERNAL EDITOR TOOL) -->
+  <div id="configModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="stark-card bg-black p-8 max-w-lg w-full space-y-6 border-2 border-white">
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+        <h2 class="text-2xl font-bold uppercase brand-font text-white">Site Configuration</h2>
+        <button onclick="closeConfigModal()" class="text-white font-mono font-bold">✕</button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-zinc-400 mb-1">SITE TITLE</label>
+          <input type="text" id="configSiteTitle" value="MOIRA.ACADEMIC" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PRIMARY AFFILIATE TRACKER PARAMETER</label>
+          <input type="text" id="configAffiliateTag" value="?ref=moira-academic" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">ANALYTICS BEACON TOKEN</label>
+          <input type="text" id="configAnalyticsToken" value="cf-beacon-token-here" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4 border-t border-zinc-800">
+        <button onclick="closeConfigModal()" class="border border-white px-4 py-2 text-xs font-mono uppercase text-white">Cancel</button>
+        <button onclick="saveSiteConfig()" class="stark-button px-5 py-2 text-xs uppercase">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/homepage.js"></script>
+
+  <script>
+    /* Configuration Modal Tools */
+    function openConfigModal() {
+      document.getElementById('configModal').classList.remove('hidden');
+    }
+    function closeConfigModal() {
+      document.getElementById('configModal').classList.add('hidden');
+    }
+    function saveSiteConfig() {
+      const title = document.getElementById('configSiteTitle').value;
+      localStorage.setItem('moira_site_title', title);
+      alert('Configuration saved to local storage!');
+      closeConfigModal();
+    }
+  </script>
 </body>
 </html>
