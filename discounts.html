@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu Deals & Discounts - Moira.academic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #ffffff; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .stark-card { background-color: #000000; border: 2px solid #ffffff; box-shadow: 4px 4px 0px #ffffff; transition: all 0.2s ease; }
+    .stark-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ffffff; }
+    .stark-button { background-color: #ffffff; color: #000000; font-weight: 700; border: 2px solid #ffffff; box-shadow: 3px 3px 0px #888888; transition: all 0.15s ease; }
+    .stark-button:hover { background-color: #e5e5e5; transform: translate(-1px, -1px); box-shadow: 5px 5px 0px #ffffff; }
+    .prose-stark h1, .prose-stark h2, .prose-stark h3 { color: #ffffff; font-family: 'Space Grotesk', sans-serif; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .prose-stark h1 { font-size: 1.875rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+    .prose-stark p { color: #d4d4d8; margin-bottom: 1rem; line-height: 1.7; }
+    .prose-stark ul { list-style-type: disc; padding-left: 1.25rem; color: #d4d4d8; margin-bottom: 1rem; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+  <!-- Navigation Header -->
+  <header class="border-b-2 border-white bg-black sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight brand-font bg-white text-black px-3 py-1">MOIRA.ACADEMIC</a>
+      
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold tracking-wide uppercase">
+        <a href="index.html" class="hover:underline underline-offset-4 decoration-2 text-white">Hub</a>
+        <a href="tools.html" class="hover:underline underline-offset-4 decoration-2 text-white">Tools Directory</a>
+        <a href="stack.html" class="hover:underline underline-offset-4 decoration-2 text-white">Research Stacks</a>
+        <a href="discounts.html" class="underline underline-offset-4 decoration-2 text-white">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline underline-offset-4 decoration-2 text-white">Methodology</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openConfigModal()" class="border-2 border-white px-3 py-1.5 text-xs font-mono uppercase hover:bg-white hover:text-black transition-colors">
+          ⚙ Site Config
+        </button>
+        <a href="discounts.html" class="stark-button px-4 py-2 text-xs uppercase tracking-wider hidden sm:inline-block">.EDU Deals</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="border-b-2 border-white py-16 px-6 bg-black">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <div class="inline-block border border-white px-4 py-1 text-xs font-mono uppercase tracking-widest bg-zinc-900 text-white">
+        Academic Verification Directory
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight uppercase brand-font text-white">
+        Student & Researcher Deals
+      </h1>
+      <p class="text-base text-zinc-300 max-w-2xl mx-auto">
+        Verified discounts, free educational tiers, and grant-funded software licenses available with a valid institutional (.edu) email address.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter & Search Controls -->
+  <section class="border-b-2 border-white bg-zinc-950 py-6 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs uppercase">
+        <span class="text-zinc-500 mr-2">Filter:</span>
+        <button onclick="filterDeals('all')" class="border border-white bg-white text-black px-3 py-1 font-bold">All Deals</button>
+        <button onclick="filterDeals('100% free')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">100% Free</button>
+        <button onclick="filterDeals('discount')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">Discounts</button>
+        <button onclick="filterDeals('grant')" class="border border-zinc-700 hover:border-white px-3 py-1 text-zinc-300">Grants</button>
+      </div>
+      <div class="w-full md:w-64">
+        <input type="text" id="dealSearch" oninput="searchDeals()" placeholder="Search discounts..." class="w-full bg-black border border-white p-2 font-mono text-xs text-white outline-none">
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Deals Grid Container -->
+  <main class="py-16 px-6 max-w-7xl mx-auto w-full flex-1">
+    <div id="deals-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="col-span-full font-mono text-xs text-zinc-500 text-center py-16">Loading Academic Deals Data...</div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-12 px-6 bg-black text-zinc-400 text-xs border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-2 text-center md:text-left">
+        <span class="text-white font-bold text-lg brand-font">MOIRA.ACADEMIC</span>
+        <p class="max-w-md">Independent academic software evaluations and research stack intelligence.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 font-mono text-white">
+        <a href="index.html" class="hover:underline">Hub</a>
+        <a href="tools.html" class="hover:underline">Tools</a>
+        <a href="stack.html" class="hover:underline">Stacks</a>
+        <a href="discounts.html" class="hover:underline">Edu Deals</a>
+        <a href="methodology.html" class="hover:underline">Methodology</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULLSCREEN INTERACTIVE ARTICLE READER & LIVE EDITOR MODAL -->
+  <div id="articleModal" class="fixed inset-0 bg-black z-50 hidden flex flex-col overflow-hidden">
+    <div class="border-b-2 border-white bg-black px-6 py-4 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-4">
+        <span class="text-xl font-bold brand-font bg-white text-black px-2 py-0.5">DEAL SPECIFICATION</span>
+        <span id="modalCategory" class="text-xs font-mono border border-zinc-700 px-2 py-1 text-zinc-300">VERIFICATION SPEC</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleEditor()" class="border border-white text-xs px-3 py-1.5 font-mono uppercase hover:bg-white hover:text-black text-white">⚡ Toggle Live Editor</button>
+        <button onclick="closeArticleModal()" class="stark-button text-xs px-4 py-1.5 uppercase">✕ Close</button>
+      </div>
+    </div>
+
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+      <div id="viewContainer" class="lg:col-span-8 overflow-y-auto p-6 md:p-10 border-r-2 border-white space-y-8">
+        <div class="border-2 border-white p-6 bg-zinc-950 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <div>
+              <span id="cardCategory" class="text-xs font-mono text-zinc-400 uppercase tracking-widest">VERIFICATION REQUIREMENT</span>
+              <h1 id="articleTitle" class="text-3xl font-bold uppercase mt-1 brand-font text-white">Software Deal</h1>
+            </div>
+            <div class="text-right">
+              <span id="articleRating" class="bg-white text-black font-mono font-bold text-lg px-3 py-1 inline-block">100% FREE</span>
+              <div id="articlePrice" class="text-xs font-mono text-zinc-400 mt-1">Value: $120/yr</div>
+            </div>
+          </div>
+        </div>
+        <div id="articleBody" class="prose-stark"></div>
+      </div>
+
+      <div id="editorContainer" class="lg:col-span-4 bg-zinc-950 p-6 overflow-y-auto space-y-6 flex flex-col border-t-2 lg:border-t-0 border-white">
+        <div class="border-b border-zinc-800 pb-3">
+          <h2 class="text-lg font-bold uppercase brand-font text-white">Live Deal Controls</h2>
+          <p class="text-xs text-zinc-400 font-mono">Edit educational deal requirements and markdown live.</p>
+        </div>
+        <div class="space-y-4 font-mono text-xs">
+          <div>
+            <label class="block text-zinc-400 mb-1">DEAL / SOFTWARE TITLE</label>
+            <input type="text" id="editTitle" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-zinc-400 mb-1">DISCOUNT TIER</label>
+              <input type="text" id="editRating" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+            <div>
+              <label class="block text-zinc-400 mb-1">REGULAR VALUE</label>
+              <input type="text" id="editPrice" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">REQUIREMENT TYPE</label>
+            <input type="text" id="editCategory" oninput="updateLive()" class="w-full bg-black border border-zinc-700 p-2 text-white outline-none">
+          </div>
+          <div>
+            <label class="block text-zinc-400 mb-1">CLAIM INSTRUCTIONS MARKDOWN</label>
+            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBSITE CONFIGURATION MODAL -->
+  <div id="configModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="stark-card bg-black p-8 max-w-lg w-full space-y-6 border-2 border-white">
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+        <h2 class="text-2xl font-bold uppercase brand-font text-white">Site Configuration</h2>
+        <button onclick="closeConfigModal()" class="text-white font-mono font-bold">✕</button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs">
+        <div>
+          <label class="block text-zinc-400 mb-1">SITE TITLE</label>
+          <input type="text" id="configSiteTitle" value="MOIRA.ACADEMIC" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PRIMARY AFFILIATE TRACKER PARAMETER</label>
+          <input type="text" id="configAffiliateTag" value="?ref=moira-academic" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">ANALYTICS BEACON TOKEN</label>
+          <input type="text" id="configAnalyticsToken" value="cf-beacon-token-here" class="w-full bg-zinc-900 border border-zinc-700 p-2 text-white outline-none">
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4 border-t border-zinc-800">
+        <button onclick="closeConfigModal()" class="border border-white px-4 py-2 text-xs font-mono uppercase text-white">Cancel</button>
+        <button onclick="saveSiteConfig()" class="stark-button px-5 py-2 text-xs uppercase">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allDeals = [
+      {
+        id: "github-student-pack",
+        title: "GitHub Student Developer Pack",
+        category: "100% Free",
+        discount: "100% Off Pro Tools",
+        value: "$1,000+ Value",
+        description: "Free access to GitHub Copilot, Cloudflare credits, Canva Pro, JetBrains IDEs, and Namecheap domains.",
+        requirements: ".EDU Email or Student ID Verification",
+        markdown: "# GitHub Student Developer Pack\n\n## Overview\nThe comprehensive developer and research infrastructure bundle for students.\n\n### What Is Included\n- **GitHub Copilot**: Free AI code completion.\n- **JetBrains All Products**: Complete suite for Python, R, and Java.\n- **Namecheap**: 1-year free .me domain name + SSL certificate.\n\n### Claim Method\nVerify your institutional status via GitHub's student portal using your university email address or official transcript."
+      },
+      {
+        id: "notion-education-plan",
+        title: "Notion Plus Education Plan",
+        category: "100% Free",
+        discount: "100% Off Personal Plus",
+        value: "$96/yr Value",
+        description: "Unlimited file uploads, version history, and unlimited page blocks for academic literature organization.",
+        requirements: "University Email Registration",
+        markdown: "# Notion Plus Education Plan\n\n## Overview\nUpgrade your workspace to the Notion Plus plan completely free of charge.\n\n### Features Included\n- Unlimited file uploads (PDF papers, dataset exports).\n- Unlimited page blocks and 30-day page history.\n- Unlimited collaborators for shared research groups.\n\n### How to Activate\nChange your account email address to your official university `.edu` or institutional email address in Notion settings."
+      },
+      {
+        id: "overleaf-pro-edu",
+        title: "Overleaf Institutional Discount",
+        category: "Discount",
+        discount: "50% Off Professional",
+        value: "$120/yr Value",
+        description: "Collaborative real-time LaTeX editor with full revision history and Git integration.",
+        requirements: "Institutional SSO or Partner University",
+        markdown: "# Overleaf Institutional Access\n\n## Overview\nMany universities provide full Overleaf Professional accounts for enrolled students and research staff.\n\n### Included Capabilities\n- Real-time track changes and comment threads.\n- Full Git and GitHub synchronization.\n- Unlimited collaborators per document."
+      }
+    ];
+    let dealsDatabase = {};
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("data/discounts.json")
+        .then((res) => {
+          if (!res.ok) throw new Error("Using fallback local deals");
+          return res.json();
+        })
+        .then((data) => {
+          allDeals = data;
+          initDeals();
+        })
+        .catch(() => {
+          initDeals();
+        });
+    });
+
+    function initDeals() {
+      allDeals.forEach((deal) => {
+        dealsDatabase[deal.id] = deal;
+      });
+      renderDeals(allDeals);
+    }
+
+    function renderDeals(deals) {
+      const container = document.getElementById("deals-grid");
+      if (!container) return;
+
+      if (deals.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center font-mono text-xs text-zinc-500 py-12">No matching academic deals found.</div>`;
+        return;
+      }
+
+      container.innerHTML = deals
+        .map(
+          (deal) => `
+        <div class="stark-card p-6 flex flex-col justify-between bg-black">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="font-mono text-xs border border-white px-2 py-0.5 text-white uppercase">${deal.category || 'DEAL'}</span>
+              <span class="bg-white text-black font-mono font-bold text-xs px-2 py-0.5">${deal.discount || 'Special Tier'}</span>
+            </div>
+            <h3 class="text-2xl font-bold uppercase brand-font text-white">${deal.title}</h3>
+            <p class="text-sm text-zinc-300">${deal.description}</p>
+            <div class="pt-3 border-t border-zinc-800 space-y-1 font-mono text-xs">
+              <div class="text-zinc-400">REQUIREMENT: <span class="text-white">${deal.requirements}</span></div>
+            </div>
+          </div>
+          <div class="mt-8 pt-4 border-t border-zinc-800 flex items-center justify-between">
+            <a href="post.html?slug=${deal.id}" class="text-xs font-mono text-zinc-400 hover:text-white underline">Verification Steps</a>
+            <button onclick="openArticleModal('${deal.id}')" class="stark-button text-xs px-3 py-1.5 uppercase">Live Preview</button>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    function filterDeals(category) {
+      if (category === "all") {
+        renderDeals(allDeals);
+      } else {
+        const filtered = allDeals.filter((d) => d.category && d.category.toLowerCase().includes(category.toLowerCase()));
+        renderDeals(filtered);
+      }
+    }
+
+    function searchDeals() {
+      const query = document.getElementById("dealSearch").value.toLowerCase();
+      const filtered = allDeals.filter(
+        (d) =>
+          d.title.toLowerCase().includes(query) ||
+          d.description.toLowerCase().includes(query) ||
+          d.requirements.toLowerCase().includes(query)
+      );
+      renderDeals(filtered);
+    }
+
+    function openArticleModal(key) {
+      const deal = dealsDatabase[key] || {
+        title: "Academic Deal Spec",
+        discount: "100% Free",
+        value: "$100 Value",
+        category: "Verification",
+        markdown: "# Deal Overview\n\nVerification details..."
+      };
+
+      document.getElementById("editTitle").value = deal.title;
+      document.getElementById("editRating").value = deal.discount || "100% Free";
+      document.getElementById("editPrice").value = deal.value || "Value $0";
+      document.getElementById("editCategory").value = deal.category || "Verification";
+      document.getElementById("editMarkdown").value = deal.markdown || `# ${deal.title}\n\n## Verification Requirements\n${deal.requirements}\n\n## Overview\n${deal.description}`;
+
+      updateLive();
+      document.getElementById("articleModal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeArticleModal() {
+      document.getElementById("articleModal").classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    function updateLive() {
+      const title = document.getElementById("editTitle").value;
+      const rating = document.getElementById("editRating").value;
+      const price = document.getElementById("editPrice").value;
+      const category = document.getElementById("editCategory").value;
+      const markdownText = document.getElementById("editMarkdown").value;
+
+      document.getElementById("articleTitle").innerText = title;
+      document.getElementById("articleRating").innerText = rating;
+      document.getElementById("articlePrice").innerText = "Value: " + price;
+      document.getElementById("modalCategory").innerText = category.toUpperCase();
+      document.getElementById("cardCategory").innerText = category.toUpperCase() + " REQUIREMENT";
+
+      if (typeof marked !== "undefined") {
+        document.getElementById("articleBody").innerHTML = marked.parse(markdownText);
+      }
+    }
+
+    function toggleEditor() {
+      const editor = document.getElementById("editorContainer");
+      const view = document.getElementById("viewContainer");
+      if (editor.classList.contains("hidden")) {
+        editor.classList.remove("hidden");
+        view.classList.remove("lg:col-span-12");
+        view.classList.add("lg:col-span-8");
+      } else {
+        editor.classList.add("hidden");
+        view.classList.remove("lg:col-span-8");
+        view.classList.add("lg:col-span-12");
+      }
+    }
+
+    function openConfigModal() {
+      document.getElementById('configModal').classList.remove('hidden');
+    }
+    function closeConfigModal() {
+      document.getElementById('configModal').classList.add('hidden');
+    }
+    function saveSiteConfig() {
+      const title = document.getElementById('configSiteTitle').value;
+      localStorage.setItem('moira_site_title', title);
+      alert('Configuration saved to local storage!');
+      closeConfigModal();
+    }
+  </script>
+</body>
+</html>
