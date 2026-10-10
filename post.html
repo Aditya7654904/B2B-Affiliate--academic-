@@ -77,7 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span id="postCategory" class="border border-white bg-white text-black px-2.5 py-0.5 font-bold uppercase">ACADEMIC EVALUATION</span>
           <span id="postDate" class="text-zinc-400">PUBLISHED: 2026-10-04</span>
         </div>
-        <span id="postSlug" class="text-zinc-500">posts/evaluation.md</span>
+        <span id="postSlug" class="text-zinc-500">posts/evaluation</span>
       </div>
 
       <h1 id="postTitle" class="text-3xl md:text-5xl font-bold tracking-tight uppercase brand-font text-white leading-tight">
@@ -101,7 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Rendered Markdown Container -->
     <article id="paperBody" class="prose-stark">
-      <div class="font-mono text-xs text-zinc-500 py-12 text-center">Fetching paper content from local Markdown vault...</div>
+      <div class="font-mono text-xs text-zinc-500 py-12 text-center">Fetching paper content from site-data.json...</div>
     </article>
   </main>
 
@@ -216,30 +216,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <script>
-    let rawMarkdownContent = "";
-
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const slug = urlParams.get("slug") || "top-ai-research-tools-2026";
-      const filePath = `posts/${slug}.md`;
+      const slug = urlParams.get("slug") || "how-to-write-lit-review";
 
-      document.getElementById("postSlug").innerText = filePath;
+      document.getElementById("postSlug").innerText = `posts/${slug}`;
 
-      fetch(filePath)
+      fetch("site-data.json")
         .then((res) => {
-          if (!res.ok) throw new Error("File not found");
-          return res.text();
+          if (!res.ok) throw new Error("Failed to load site-data.json");
+          return res.json();
         })
-        .then((text) => {
-          rawMarkdownContent = text;
-          parseAndRenderMarkdown(text);
+        .then((data) => {
+          const posts = data.posts || [];
+          const post = posts.find((p) => p.slug === slug) || posts[0];
+
+          if (!post) {
+            throw new Error("Post not found in site-data.json");
+          }
+
+          renderPost(post);
         })
         .catch((err) => {
           console.error("Error loading post:", err);
           document.getElementById("paperBody").innerHTML = `
             <div class="border-2 border-white p-8 text-center space-y-4 bg-zinc-950">
               <h2 class="text-xl font-bold uppercase brand-font text-white">Paper Evaluation Not Found</h2>
-              <p class="text-xs font-mono text-zinc-400">Could not locate file at path <code>${filePath}</code>.</p>
+              <p class="text-xs font-mono text-zinc-400">Could not locate post with slug <code>${slug}</code> in site-data.json.</p>
               <a href="index.html" class="stark-button inline-block text-xs px-4 py-2 uppercase">Return to Directory Hub</a>
             </div>
           `;
@@ -247,34 +250,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
     });
 
-    function parseAndRenderMarkdown(text) {
-      let title = "Academic Software Evaluation";
-      let category = "ACADEMIC EVALUATION";
-      let rating = "★ 4.8 / 5.0";
-      let price = "Free Tier Available";
-      let date = "2026-10-04";
-      let content = text;
-
-      // Extract Frontmatter metadata if present
-      if (text.startsWith("---")) {
-        const parts = text.split("---");
-        if (parts.length >= 3) {
-          const frontmatter = parts[1];
-          content = parts.slice(2).join("---");
-
-          const titleMatch = frontmatter.match(/title:\s*["']?(.*?)["']?$/m);
-          const categoryMatch = frontmatter.match(/category:\s*["']?(.*?)["']?$/m);
-          const ratingMatch = frontmatter.match(/rating:\s*["']?(.*?)["']?$/m);
-          const priceMatch = frontmatter.match(/price:\s*["']?(.*?)["']?$/m);
-          const dateMatch = frontmatter.match(/date:\s*["']?(.*?)["']?$/m);
-
-          if (titleMatch) title = titleMatch[1];
-          if (categoryMatch) category = categoryMatch[1];
-          if (ratingMatch) rating = ratingMatch[1];
-          if (priceMatch) price = priceMatch[1];
-          if (dateMatch) date = dateMatch[1];
-        }
-      }
+    function renderPost(post) {
+      const title = post.title || "Academic Software Evaluation";
+      const category = post.category || "ACADEMIC EVALUATION";
+      const rating = post.rating || "★ 4.8 / 5.0";
+      const price = post.price || "Free Tier Available";
+      const date = post.date || "2026-10-10";
+      const content = post.content || "No content provided.";
 
       document.getElementById("postTitle").innerText = title;
       document.getElementById("postCategory").innerText = category.toUpperCase();
@@ -293,6 +275,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById("editPrice").value = price;
       document.getElementById("editCategory").value = category;
       document.getElementById("editMarkdown").value = content;
+
+      updateLive();
     }
 
     function openArticleModal() {
