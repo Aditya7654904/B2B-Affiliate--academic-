@@ -77,38 +77,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main class="max-w-4xl mx-auto w-full py-16 px-6 flex-1 space-y-12">
     
     <!-- Methodology Grid Principles -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="stark-card p-6 space-y-3">
-        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 01</span>
-        <h3 class="text-xl font-bold uppercase brand-font text-white">Citation Accuracy</h3>
-        <p class="text-sm text-zinc-300">
-          AI literature search engines are tested against a corpus of 500 peer-reviewed papers across social sciences and STEM to measure citation accuracy and hallucination rates.
-        </p>
-      </div>
-
-      <div class="stark-card p-6 space-y-3">
-        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 02</span>
-        <h3 class="text-xl font-bold uppercase brand-font text-white">Privacy & Data Governance</h3>
-        <p class="text-sm text-zinc-300">
-          We audit terms of service to verify whether user uploads and unpublished manuscript drafts are excluded from LLM training sets and third-party tracking.
-        </p>
-      </div>
-
-      <div class="stark-card p-6 space-y-3">
-        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 03</span>
-        <h3 class="text-xl font-bold uppercase brand-font text-white">Export & Interoperability</h3>
-        <p class="text-sm text-zinc-300">
-          Tools are rated on open-standard export support (BibTeX, RIS, Markdown, LaTeX) to ensure researchers avoid vendor lock-in.
-        </p>
-      </div>
-
-      <div class="stark-card p-6 space-y-3">
-        <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">METRIC 04</span>
-        <h3 class="text-xl font-bold uppercase brand-font text-white">Cost-to-Value Index</h3>
-        <p class="text-sm text-zinc-300">
-          Pricing structures are evaluated strictly against institutional access availability, free educational tiers, and student budget sustainability.
-        </p>
-      </div>
+    <div id="metrics-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="col-span-full font-mono text-xs text-zinc-500 text-center py-6">Loading Evaluation Metrics...</div>
     </div>
 
     <!-- Article Document Body -->
@@ -119,21 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <article id="methodologyBody" class="prose-stark">
-        <h1>Evaluation Standard Operating Procedure</h1>
-        <p>
-          At Moira.academic, software evaluations are conducted independently without editorial input or sponsorship influence from software vendors.
-        </p>
-        <h2>1. Testing Protocols</h2>
-        <p>Every software benchmark undergoes a 3-stage evaluation process:</p>
-        <ul>
-          <li><strong>Quantitative Stress-Testing:</strong> Evaluation of search latency, parsing accuracy on mathematical equations, and PDF metadata extraction success rates.</li>
-          <li><strong>Workflow Integration:</strong> Real-world scenario testing combining reference managers with writing environments (e.g., Zotero to Overleaf or Obsidian).</li>
-          <li><strong>Institutional Access Audit:</strong> Direct verification of student email discounts, grant funding options, and open-access tier functionality.</li>
-        </ul>
-        <h2>2. Disclosure Policy</h2>
-        <p>
-          All affiliate links or referral metrics are explicitly disclosed with transparent site configuration parameters maintained in local storage.
-        </p>
+        <p class="font-mono text-xs text-zinc-500">Loading Methodology Standard...</p>
       </article>
     </section>
   </main>
@@ -211,15 +167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div>
             <label class="block text-zinc-400 mb-1">MARKDOWN DOCUMENTATION</label>
-            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"># Evaluation Standard Operating Procedure
-
-At Moira.academic, software evaluations are conducted independently without editorial input or sponsorship influence.
-
-## 1. Testing Protocols
-Every software benchmark undergoes a 3-stage evaluation process:
-- **Quantitative Stress-Testing:** Evaluation of search latency and accuracy.
-- **Workflow Integration:** Real-world scenario testing in academic stack environments.
-- **Institutional Access Audit:** Verification of student discounts and open-access tiers.</textarea>
+            <textarea id="editMarkdown" oninput="updateLive()" rows="12" class="w-full bg-black border border-zinc-700 p-2 text-white font-mono text-xs outline-none leading-relaxed"></textarea>
           </div>
         </div>
       </div>
@@ -257,6 +205,58 @@ Every software benchmark undergoes a 3-stage evaluation process:
   </div>
 
   <script>
+    let methodologyData = {};
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("site-data.json")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to load site-data.json");
+          return res.json();
+        })
+        .then((data) => {
+          methodologyData = data.methodology || {};
+          renderMethodology(methodologyData);
+        })
+        .catch((err) => {
+          console.error("Error loading methodology data:", err);
+          document.getElementById("metrics-grid").innerHTML = `
+            <div class="col-span-full border border-red-500 p-6 text-center font-mono text-xs text-red-400">
+              Failed to load methodology data from <code>site-data.json</code>.
+            </div>
+          `;
+        });
+    });
+
+    function renderMethodology(data) {
+      // 1. Render Metrics Grid
+      const gridContainer = document.getElementById("metrics-grid");
+      const metrics = data.metrics || [];
+      if (metrics.length > 0) {
+        gridContainer.innerHTML = metrics.map(m => `
+          <div class="stark-card p-6 space-y-3">
+            <span class="font-mono text-xs bg-white text-black font-bold px-2 py-0.5">${m.code}</span>
+            <h3 class="text-xl font-bold uppercase brand-font text-white">${m.title}</h3>
+            <p class="text-sm text-zinc-300">${m.description}</p>
+          </div>
+        `).join("");
+      } else {
+        gridContainer.innerHTML = `<div class="col-span-full text-center font-mono text-xs text-zinc-500">No metrics defined.</div>`;
+      }
+
+      // 2. Render Main Body Article via Markdown
+      const mdContent = data.markdown || "# Evaluation Standard Operating Procedure\n\nNo content specified.";
+      document.getElementById("methodologyBody").innerHTML = marked.parse(mdContent);
+
+      // 3. Pre-fill Editor fields
+      document.getElementById("editTitle").value = data.title || "Benchmarking Methodology SOP";
+      document.getElementById("editRating").value = data.status || "VERIFIED SOP";
+      document.getElementById("editPrice").value = data.version || "v2026.1";
+      document.getElementById("editCategory").value = data.category || "Methodology Standard";
+      document.getElementById("editMarkdown").value = mdContent;
+
+      updateLive();
+    }
+
     function openArticleModal() {
       updateLive();
       document.getElementById("articleModal").classList.remove("hidden");
