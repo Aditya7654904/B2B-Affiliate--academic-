@@ -1,0 +1,44 @@
+{
+  "stacks": [
+    {
+      "id": "lit-review-stack",
+      "category": "Literature",
+      "title": "AI Paper Discovery & Mapping Stack",
+      "description": "Accelerate paper discovery and visualize citation networks.",
+      "monthlyCost": "Free / Edu",
+      "tools": [
+        { "name": "Elicit", "role": "AI Assistant", "affiliateUrl": "https://elicit.com" }
+      ],
+      "markdown": "# AI Paper Discovery Stack\n\nDetailed workflow instructions go here..."
+    }
+  ],
+  "tools": [
+    {
+      "id": "zotero",
+      "category": "Reference Manager",
+      "name": "Zotero",
+      "description": "Free, easy-to-use tool to help you collect, organize, cite, and share research.",
+      "pricing": "Free Open Source",
+      "url": "https://www.zotero.org"
+    }
+  ],
+  "discounts": [
+    {
+      "id": "github-student",
+      "provider": "GitHub Student Developer Pack",
+      "offer": "Free access to 100+ developer and academic tools worth thousands.",
+      "category": "Development",
+      "url": "https://education.github.com/pack"
+    }
+  ],
+  "posts": [
+    {
+      "slug": "how-to-write-lit-review",
+      "title": "How to Structure a Systematic Literature Review in 2026",
+      "date": "2026-10-10",
+      "readTime": "5 min read",
+      "excerpt": "A step-by-step framework for mapping academic papers using modern AI tools.",
+      "content": "## Introduction\n\nWriting a literature review used to take months of manual sorting...\n\n## Step 1: Automated Discovery\nUse semantic search tools to pull relevant abstracts..."
+    }
+  ]
+}
