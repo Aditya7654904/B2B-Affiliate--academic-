@@ -211,14 +211,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     let stacksDatabase = {};
 
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("academic-stacks.json")
+      fetch("site-data.json")
         .then((res) => {
-          if (!res.ok) throw new Error("Failed to load academic-stacks.json");
+          if (!res.ok) throw new Error("Failed to load site-data.json");
           return res.json();
         })
         .then((data) => {
-          allStacks = data;
-          data.forEach((stack) => {
+          allStacks = data.stacks || [];
+          allStacks.forEach((stack) => {
             stacksDatabase[stack.id] = stack;
           });
           renderStacks(allStacks);
@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           console.error("Error loading stacks:", err);
           document.getElementById("stacks-grid").innerHTML = `
             <div class="col-span-full border border-red-500 p-6 text-center font-mono text-xs text-red-400">
-              Failed to load stacks data. Ensure <code>academic-stacks.json</code> exists in root folder.
+              Failed to load stacks data from <code>site-data.json</code>.
             </div>
           `;
         });
@@ -249,14 +249,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="space-y-4">
             <div class="flex justify-between items-start">
               <span class="font-mono text-xs border border-white px-2 py-0.5 text-white uppercase">${stack.category || 'WORKFLOW'}</span>
-              <span class="bg-white text-black font-mono font-bold text-xs px-2 py-0.5">Featured</span>
+              <span class="bg-white text-black font-mono font-bold text-xs px-2 py-0.5">${stack.monthlyCost || 'Featured'}</span>
             </div>
             <h3 class="text-2xl font-bold uppercase brand-font text-white">${stack.title}</h3>
             <p class="text-sm text-zinc-300">${stack.description}</p>
             <div class="pt-3 border-t border-zinc-800">
               <span class="font-mono text-xs text-zinc-400 block mb-2">INCLUDED TOOLS:</span>
               <div class="flex flex-wrap gap-1.5">
-                ${(stack.tools || []).map(tool => `<span class="bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs px-2 py-0.5 font-mono">${tool.name}</span>`).join('')}
+                ${(stack.tools || []).map(tool => `<span class="bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs px-2 py-0.5 font-mono">${tool.name || tool}</span>`).join('')}
               </div>
             </div>
           </div>
@@ -285,7 +285,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         (s) =>
           s.title.toLowerCase().includes(query) ||
           s.description.toLowerCase().includes(query) ||
-          (s.tools && s.tools.some((t) => t.name.toLowerCase().includes(query) || t.role.toLowerCase().includes(query)))
+          (s.tools && s.tools.some((t) => (t.name || t).toLowerCase().includes(query) || (t.role || "").toLowerCase().includes(query)))
       );
       renderStacks(filtered);
     }
@@ -298,11 +298,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         tools: []
       };
 
-      const toolsMarkdown = (stack.tools || []).map(t => `- **${t.name}** (${t.role}) - [Try Tool](${t.affiliateUrl})`).join('\n');
+      const toolsMarkdown = (stack.tools || []).map(t => `- **${t.name || t}** ${t.role ? '('+t.role+')' : ''} ${t.affiliateUrl ? '- [Try Tool](' + t.affiliateUrl + ')' : ''}`).join('\n');
 
       document.getElementById("editTitle").value = stack.title;
-      document.getElementById("editRating").value = "Free / Edu";
-      document.getElementById("editPrice").value = "$0/mo";
+      document.getElementById("editRating").value = stack.monthlyCost || "Free / Edu";
+      document.getElementById("editPrice").value = stack.monthlyCost || "$0/mo";
       document.getElementById("editCategory").value = stack.category || "Research";
       document.getElementById("editMarkdown").value = stack.markdown || `# ${stack.title}\n\n## Included Software\n${toolsMarkdown}\n\n## Overview\n${stack.description}`;
 
