@@ -22,6 +22,34 @@
       "url": "https://www.zotero.org"
     }
   ],
+  {
+  "tools": [
+    {
+      "id": "zotero",
+      "title": "Zotero",
+      "name": "Zotero",
+      "category": "Citations",
+      "rating": "★ 4.9 / 5.0",
+      "price": "Free Open Source",
+      "pricing": "Free Open Source",
+      "description": "Free, easy-to-use reference manager to help you collect, organize, cite, and share research sources.",
+      "url": "https://www.zotero.org",
+      "markdown": "# Zotero Evaluation\n\n## Overview\nZotero is the gold standard for open-source reference management. It automatically senses research items in your web browser, allowing you to save citations with a single click.\n\n## Key Academic Benchmarks\n- **Browser Integration:** Seamless one-click metadata extraction from Google Scholar, JSTOR, and PubMed.\n- **PDF Management:** Automatic retrieval of associated PDF attachments and OCR indexing.\n- **Export & Formatting:** Direct plugin support for Word, LibreOffice, and Google Docs with over 10,000 citation styles (APA, MLA, Chicago, IEEE).\n\n## Verdict\nEssential tool for every researcher seeking vendor independence and robust reference syncing."
+    },
+    {
+      "id": "elicit",
+      "title": "Elicit",
+      "name": "Elicit",
+      "category": "AI Search",
+      "rating": "★ 4.7 / 5.0",
+      "price": "Free Tier / Pro",
+      "pricing": "Free Tier / Pro",
+      "description": "AI research assistant that automates literature reviews, finds relevant papers, and extracts key data summaries.",
+      "url": "https://elicit.com",
+      "markdown": "# Elicit Research Assistant Evaluation\n\n## Overview\nElicit uses language models to help researchers automate workflows like literature synthesis, semantic paper discovery, and concept extraction.\n\n## Key Academic Benchmarks\n- **Semantic Search:** Finds papers even when keywords do not exact-match the abstract.\n- **Data Extraction:** Automatically pulls study design, intervention details, and outcome measures into a structured table.\n- **Citation Context:** Summarizes what other papers say about a specific finding.\n\n## Verdict\nAn incredible accelerator for early-stage literature mapping, though output claims should always be verified against primary sources."
+    }
+  ]
+}
   "discounts": [
     {
       "id": "github-student",
