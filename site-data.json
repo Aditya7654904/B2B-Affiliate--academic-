@@ -15,14 +15,6 @@
   "tools": [
     {
       "id": "zotero",
-      "category": "Reference Manager",
-      "name": "Zotero",
-      "description": "Free, easy-to-use tool to help you collect, organize, cite, and share research.",
-      "pricing": "Free Open Source",
-      "url": "https://www.zotero.org"
-    },
-    {
-      "id": "zotero",
       "title": "Zotero",
       "name": "Zotero",
       "category": "Citations",
@@ -45,8 +37,7 @@
       "url": "https://elicit.com",
       "markdown": "# Elicit Research Assistant Evaluation\n\n## Overview\nElicit uses language models to help researchers automate workflows like literature synthesis, semantic paper discovery, and concept extraction.\n\n## Key Academic Benchmarks\n- **Semantic Search:** Finds papers even when keywords do not exact-match the abstract.\n- **Data Extraction:** Automatically pulls study design, intervention details, and outcome measures into a structured table.\n- **Citation Context:** Summarizes what other papers say about a specific finding.\n\n## Verdict\nAn incredible accelerator for early-stage literature mapping, though output claims should always be verified against primary sources."
     }
-  ]
-},
+  ],
   "discounts": [
     {
       "id": "github-student",
