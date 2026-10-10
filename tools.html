@@ -211,14 +211,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     let toolsDatabase = {};
 
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("data/tools.json")
+      fetch("site-data.json")
         .then((res) => {
-          if (!res.ok) throw new Error("Failed to load tools JSON");
+          if (!res.ok) throw new Error("Failed to load site-data.json");
           return res.json();
         })
         .then((data) => {
-          allTools = data;
-          data.forEach((tool) => {
+          allTools = data.tools || [];
+          allTools.forEach((tool) => {
             toolsDatabase[tool.id] = tool;
           });
           renderTools(allTools);
@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           console.error("Error loading tools:", err);
           document.getElementById("tools-grid").innerHTML = `
             <div class="col-span-full border border-red-500 p-6 text-center font-mono text-xs text-red-400">
-              Failed to load tools data. Ensure <code>data/tools.json</code> exists.
+              Failed to load tools data from <code>site-data.json</code>.
             </div>
           `;
         });
@@ -251,11 +251,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="font-mono text-xs border border-white px-2 py-0.5 text-white uppercase">${tool.category || 'SOFTWARE'}</span>
               <span class="bg-white text-black font-mono font-bold text-xs px-2 py-0.5">${tool.rating || '★ 4.8'}</span>
             </div>
-            <h3 class="text-2xl font-bold uppercase brand-font text-white">${tool.title}</h3>
+            <h3 class="text-2xl font-bold uppercase brand-font text-white">${tool.title || tool.name}</h3>
             <p class="text-sm text-zinc-300">${tool.description}</p>
             <div class="pt-3 border-t border-zinc-800 flex justify-between items-center font-mono text-xs text-zinc-400">
               <span>PRICING:</span>
-              <span class="text-white font-bold">${tool.price || 'Free Tier'}</span>
+              <span class="text-white font-bold">${tool.price || tool.pricing || 'Free Tier'}</span>
             </div>
           </div>
           <div class="mt-8 pt-4 border-t border-zinc-800 flex items-center justify-between">
@@ -281,7 +281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const query = document.getElementById("toolSearch").value.toLowerCase();
       const filtered = allTools.filter(
         (t) =>
-          t.title.toLowerCase().includes(query) ||
+          (t.title || t.name || "").toLowerCase().includes(query) ||
           t.description.toLowerCase().includes(query) ||
           (t.category && t.category.toLowerCase().includes(query))
       );
@@ -297,11 +297,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         markdown: "# Tool Overview\n\nDetailed software benchmark..."
       };
 
-      document.getElementById("editTitle").value = tool.title;
+      document.getElementById("editTitle").value = tool.title || tool.name;
       document.getElementById("editRating").value = tool.rating || "★ 4.8 / 5.0";
-      document.getElementById("editPrice").value = tool.price || "Free Tier";
+      document.getElementById("editPrice").value = tool.price || tool.pricing || "Free Tier";
       document.getElementById("editCategory").value = tool.category || "Software";
-      document.getElementById("editMarkdown").value = tool.markdown || `# ${tool.title}\n\n## Description\n${tool.description}\n\n## Academic Benchmarks\n- Accuracy & Citation Tracking\n- Workflow Efficiency Integration`;
+      document.getElementById("editMarkdown").value = tool.markdown || `# ${tool.title || tool.name}\n\n## Description\n${tool.description}\n\n## Academic Benchmarks\n- Accuracy & Citation Tracking\n- Workflow Efficiency Integration`;
 
       updateLive();
       document.getElementById("articleModal").classList.remove("hidden");
