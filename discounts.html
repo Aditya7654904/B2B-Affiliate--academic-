@@ -206,61 +206,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <script>
-    let allDeals = [
-      {
-        id: "github-student-pack",
-        title: "GitHub Student Developer Pack",
-        category: "100% Free",
-        discount: "100% Off Pro Tools",
-        value: "$1,000+ Value",
-        description: "Free access to GitHub Copilot, Cloudflare credits, Canva Pro, JetBrains IDEs, and Namecheap domains.",
-        requirements: ".EDU Email or Student ID Verification",
-        markdown: "# GitHub Student Developer Pack\n\n## Overview\nThe comprehensive developer and research infrastructure bundle for students.\n\n### What Is Included\n- **GitHub Copilot**: Free AI code completion.\n- **JetBrains All Products**: Complete suite for Python, R, and Java.\n- **Namecheap**: 1-year free .me domain name + SSL certificate.\n\n### Claim Method\nVerify your institutional status via GitHub's student portal using your university email address or official transcript."
-      },
-      {
-        id: "notion-education-plan",
-        title: "Notion Plus Education Plan",
-        category: "100% Free",
-        discount: "100% Off Personal Plus",
-        value: "$96/yr Value",
-        description: "Unlimited file uploads, version history, and unlimited page blocks for academic literature organization.",
-        requirements: "University Email Registration",
-        markdown: "# Notion Plus Education Plan\n\n## Overview\nUpgrade your workspace to the Notion Plus plan completely free of charge.\n\n### Features Included\n- Unlimited file uploads (PDF papers, dataset exports).\n- Unlimited page blocks and 30-day page history.\n- Unlimited collaborators for shared research groups.\n\n### How to Activate\nChange your account email address to your official university `.edu` or institutional email address in Notion settings."
-      },
-      {
-        id: "overleaf-pro-edu",
-        title: "Overleaf Institutional Discount",
-        category: "Discount",
-        discount: "50% Off Professional",
-        value: "$120/yr Value",
-        description: "Collaborative real-time LaTeX editor with full revision history and Git integration.",
-        requirements: "Institutional SSO or Partner University",
-        markdown: "# Overleaf Institutional Access\n\n## Overview\nMany universities provide full Overleaf Professional accounts for enrolled students and research staff.\n\n### Included Capabilities\n- Real-time track changes and comment threads.\n- Full Git and GitHub synchronization.\n- Unlimited collaborators per document."
-      }
-    ];
+    let allDeals = [];
     let dealsDatabase = {};
 
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("data/discounts.json")
+      fetch("site-data.json")
         .then((res) => {
-          if (!res.ok) throw new Error("Using fallback local deals");
+          if (!res.ok) throw new Error("Failed to load site-data.json");
           return res.json();
         })
         .then((data) => {
-          allDeals = data;
-          initDeals();
+          allDeals = data.discounts || [];
+          allDeals.forEach((deal) => {
+            dealsDatabase[deal.id] = deal;
+          });
+          renderDeals(allDeals);
         })
-        .catch(() => {
-          initDeals();
+        .catch((err) => {
+          console.error("Error loading deals data:", err);
+          document.getElementById("deals-grid").innerHTML = `
+            <div class="col-span-full border border-red-500 p-6 text-center font-mono text-xs text-red-400">
+              Failed to load discounts data from <code>site-data.json</code>.
+            </div>
+          `;
         });
     });
-
-    function initDeals() {
-      allDeals.forEach((deal) => {
-        dealsDatabase[deal.id] = deal;
-      });
-      renderDeals(allDeals);
-    }
 
     function renderDeals(deals) {
       const container = document.getElementById("deals-grid");
